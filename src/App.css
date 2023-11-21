@@ -16,7 +16,7 @@
       "MeteoShower Sandstorm LightningStorm LightningStorm Blizzard"
       "FireMastery EarthMastery WindMastery LightningMastery WaterMastery"
       "EyeoftheStorm EyeoftheStorm EyeoftheStorm EyeoftheStorm EyeoftheStorm";
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(5, 1fr);
   }
 
   [data-skill="RockCrash"] {
