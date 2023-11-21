@@ -1,6 +1,6 @@
-import "./App.css";
 import treeJson from "./data/tree.json";
 import { create } from "zustand";
+import { useParams } from "react-router-dom";
 
 interface TreeState {
   tree: typeof treeJson;
@@ -68,19 +68,25 @@ const useTreeStore = create<TreeState>()((set) => ({
     }),
 }));
 
+function getJob(jobName: string, jobs: any) {
+  return jobs.find(
+    (job: any) => job.name.en.toLowerCase() === jobName.toLowerCase()
+  );
+}
+
 function App() {
-  // every time we level up a skill
-  // we need to check if it meets the min level for the
-  // skills it it needed for
   const increaseSkillPoint = useTreeStore((state) => state.increaseSkillPoint);
   const decreaseSkillPoint = useTreeStore((state) => state.decreaseSkillPoint);
   const tree = useTreeStore((state) => state.tree);
+  let params = useParams<{ class: string }>();
+
+  const jobId = getJob(params.class!, tree).id;
 
   return (
     <div className="eleGrid gap-1 p-10">
-      {tree[5].skills.map((skill) => {
+      {getJob(params.class!, tree).skills.map((skill: any) => {
         const hasMinLevelRequirements = skill.requirements.every(
-          (req) => req.hasMinLevel === true
+          (req: any) => req.hasMinLevel === true
         );
         const isMaxed = skill.skillLevel === skill.levels.length;
         return (
@@ -92,19 +98,20 @@ function App() {
             >
               <button
                 onKeyDown={(event) => {
-                  event.preventDefault();
-                  if (event.key === "ArrowDown") {
-                    decreaseSkillPoint(9150, skill.id);
-                  } else if (event.key === "ArrowUp") {
-                    increaseSkillPoint(9150, skill.id);
+                  if (["ArrowDown", "ArrowUp"].includes(event.key)) {
+                    event.preventDefault();
+                    if (event.key === "ArrowDown") {
+                      decreaseSkillPoint(jobId, skill.id);
+                    } else if (event.key === "ArrowUp") {
+                      increaseSkillPoint(jobId, skill.id);
+                    }
                   }
                 }}
                 onClick={(event) => {
-                  console.log(event.type);
                   if (event.type === "click") {
-                    increaseSkillPoint(9150, skill.id);
+                    increaseSkillPoint(jobId, skill.id);
                   } else if (event.type === "contextmenu") {
-                    decreaseSkillPoint(9150, skill.id);
+                    decreaseSkillPoint(jobId, skill.id);
                   }
                 }}
                 disabled={!hasMinLevelRequirements}
@@ -118,11 +125,9 @@ function App() {
                   {isMaxed ? "MAX" : `${skill.skillLevel}`}
                 </span>
                 <img
-                  style={{
-                    height: "48px",
-                    width: "48px",
-                    filter: `grayscale(${hasMinLevelRequirements ? "0" : "1"})`,
-                  }}
+                  className={`h-12 w-12 ${
+                    hasMinLevelRequirements ? "grayscale-0" : "grayscale"
+                  }`}
                   src={`https://api.flyff.com/image/skill/colored/${skill.icon}`}
                 />
                 <span
@@ -134,7 +139,7 @@ function App() {
                 </span>
               </button>
               <div>
-                {skill.requirements.map((skill) => (
+                {skill.requirements.map((skill: any) => (
                   <span
                     className={`block text-sm text-center ${
                       hasMinLevelRequirements
