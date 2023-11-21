@@ -3,7 +3,16 @@
 @tailwind utilities;
 
 @layer base {
-  .eleGrid {
+  html,
+  body {
+    @apply bg-gray-50;
+    height: 100%;
+  }
+
+  #root {
+    height: 100%;
+  }
+  .elementor {
     display: grid;
     width: 100%;
     grid-template-areas:
