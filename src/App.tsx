@@ -60,7 +60,7 @@ function App() {
             setSkillTree(decompressedSkillTree);
           }}
           placeholder="Input tree code"
-          className="border border-gray-300 rounded-md w-full px-2 py-3"
+          className="border border-gray-300 rounded-md w-full px-2 py-3 resize-none"
           rows={5}
         />
       </div>

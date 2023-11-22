@@ -1,0 +1,118 @@
+.billposter {
+  grid-template-areas:
+    "Heal Heal Heal MoonBeam MoonBeam"
+    "Patience QuickStep MentalSign TempingHole ."
+    "Resurrection Haste HeapUp Stonehand ."
+    "CircleHealing CatsReflex BeefUp BurstCrack ."
+    "Prevention CannonBall Accuracy PowerFist ."
+    ". Asmodeus PiercingSerpent . ."
+    ". BelialSmashing BaraqijalEsna . ."
+    ". BloodFist BgvurTialbold . ."
+    "Sonichand Sonichand Sonichand Sonichand Sonichand"
+    "Asalraalaikum Asalraalaikum Asalraalaikum Asalraalaikum Asalraalaikum"
+    "SurysTenacity SurysTenacity SurysTenacity SurysTenacity SurysTenacity";
+}
+
+[data-skill="BeefUp"] {
+  grid-area: BeefUp;
+}
+
+[data-skill="CircleHealing"] {
+  grid-area: CircleHealing;
+}
+
+[data-skill="CannonBall"] {
+  grid-area: CannonBall;
+}
+
+[data-skill="MentalSign"] {
+  grid-area: MentalSign;
+}
+
+[data-skill="TempingHole"] {
+  grid-area: TempingHole;
+}
+
+[data-skill="Patience"] {
+  grid-area: Patience;
+}
+
+[data-skill="Stonehand"] {
+  grid-area: Stonehand;
+}
+
+[data-skill="CatsReflex"] {
+  grid-area: CatsReflex;
+}
+
+[data-skill="QuickStep"] {
+  grid-area: QuickStep;
+}
+
+[data-skill="Heal"] {
+  grid-area: Heal;
+}
+
+[data-skill="PowerFist"] {
+  grid-area: PowerFist;
+}
+
+[data-skill="Accuracy"] {
+  grid-area: Accuracy;
+}
+
+[data-skill="HeapUp"] {
+  grid-area: HeapUp;
+}
+
+[data-skill="BurstCrack"] {
+  grid-area: BurstCrack;
+}
+
+[data-skill="MoonBeam"] {
+  grid-area: MoonBeam;
+}
+
+[data-skill="Resurrection"] {
+  grid-area: Resurrection;
+}
+
+[data-skill="Haste"] {
+  grid-area: Haste;
+}
+
+[data-skill="Asmodeus"] {
+  grid-area: Asmodeus;
+}
+
+[data-skill="PiercingSerpent"] {
+  grid-area: PiercingSerpent;
+}
+
+[data-skill="BelialSmashing"] {
+  grid-area: BelialSmashing;
+}
+
+[data-skill="BaraqijalEsna"] {
+  grid-area: BaraqijalEsna;
+}
+
+[data-skill="BgvurTialbold"] {
+  grid-area: BgvurTialbold;
+}
+
+[data-skill="Sonichand"] {
+  grid-area: Sonichand;
+}
+
+[data-skill="Asalraalaikum"] {
+  grid-area: Asalraalaikum;
+}
+
+[data-skill="SurysTenacity"] {
+  grid-area: SurysTenacity;
+}
+
+[data-skill="BloodFist"] {
+  grid-area: BloodFist;
+}

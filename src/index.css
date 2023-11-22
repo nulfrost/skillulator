@@ -1,6 +1,7 @@
 @import url("./css/blade.css");
 @import url("./css/elementor.css");
 @import url("./css/ringmaster.css");
+@import url("./css/billposter.css");
 
 @tailwind base;
 @tailwind components;
