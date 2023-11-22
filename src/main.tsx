@@ -1,10 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
-import "./index.css";
+import { Link, RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
-
-// https://api.flyff.com/image/class/{style}/{fileName}
+import "./index.css";
 
 const JOBS = [
   {
