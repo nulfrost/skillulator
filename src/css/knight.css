@@ -1,0 +1,115 @@
+.knight {
+  grid-template-areas:
+    "Protection Protection Protection Slash Slash"
+    "Keenwheel BloodyStrike ShieldBash Empowerweapon Empowerweapon"
+    "Blindside ReflexHit Sneaker SmiteAxe BlazingSword"
+    "SpecialHit Guillotine . AxeMastery SwordMastery"
+    ". Charge PainDealer Guard HeartofFury"
+    ". EarthDivider PowerStomp Rage GrandRage"
+    ". PowerSwing PainReflection CallofFury ."
+    "HeartofSacrifice HeartofSacrifice HeartofSacrifice HeartofSacrifice HeartofSacrifice";
+}
+
+[data-skill="Protection"] {
+  grid-area: Protection;
+}
+
+[data-skill="Slash"] {
+  grid-area: Slash;
+}
+
+[data-skill="Keenwheel"] {
+  grid-area: Keenwheel;
+}
+
+[data-skill="BloodyStrike"] {
+  grid-area: BloodyStrike;
+}
+
+[data-skill="ShieldBash"] {
+  grid-area: ShieldBash;
+}
+
+[data-skill="Empowerweapon"] {
+  grid-area: Empowerweapon;
+}
+
+[data-skill="Blindside"] {
+  grid-area: Blindside;
+}
+
+[data-skill="ReflexHit"] {
+  grid-area: ReflexHit;
+}
+
+[data-skill="Sneaker"] {
+  grid-area: Sneaker;
+}
+
+[data-skill="SmiteAxe"] {
+  grid-area: SmiteAxe;
+}
+
+[data-skill="BlazingSword"] {
+  grid-area: BlazingSword;
+}
+
+[data-skill="SpecialHit"] {
+  grid-area: SpecialHit;
+}
+
+[data-skill="Guillotine"] {
+  grid-area: Guillotine;
+}
+
+[data-skill="AxeMastery"] {
+  grid-area: AxeMastery;
+}
+
+[data-skill="SwordMastery"] {
+  grid-area: SwordMastery;
+}
+
+[data-skill="Charge"] {
+  grid-area: Charge;
+}
+
+[data-skill="PainDealer"] {
+  grid-area: PainDealer;
+}
+
+[data-skill="Guard"] {
+  grid-area: Guard;
+}
+
+[data-skill="HeartofFury"] {
+  grid-area: HeartofFury;
+}
+
+[data-skill="EarthDivider"] {
+  grid-area: EarthDivider;
+}
+
+[data-skill="PowerStomp"] {
+  grid-area: PowerStomp;
+}
+
+[data-skill="Rage"] {
+  grid-area: Rage;
+}
+
+[data-skill="PowerSwing"] {
+  grid-area: PowerSwing;
+}
+
+[data-skill="PainReflection"] {
+  grid-area: PainReflection;
+}
+
+[data-skill="CallofFury"] {
+  grid-area: CallofFury;
+}
+
+[data-skill="HeartofSacrifice"] {
+  grid-area: HeartofSacrifice;
+}

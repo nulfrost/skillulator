@@ -2,6 +2,7 @@
 @import url("./css/elementor.css");
 @import url("./css/ringmaster.css");
 @import url("./css/billposter.css");
+@import url("./css//knight.css");
 
 @tailwind base;
 @tailwind components;

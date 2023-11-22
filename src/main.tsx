@@ -43,15 +43,15 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <div className="flex justify-center items-center h-full flex-col">
+      <div className="flex justify-center items-center h-full flex-col px-3 py-3">
         <h1 className="text-3xl mb-4 font-bold">Skillulator</h1>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-4 gap-2 w-full lg:w-max">
           {JOBS.map((job) => (
             <Link
               aria-label={`Go to the ${job.name} skill tree`}
               to={`/c/${job.name}`}
               key={job.name}
-              className="flex items-center border border-gray-300 rounded-md px-7 py-2 hover:bg-gray-100 duration-150 bg-white"
+              className="flex items-center border border-gray-300 rounded-md px-1 py-2 hover:bg-gray-100 duration-150 bg-white justify-center lg:px-5 flex-col"
             >
               <img
                 src={`https://api.flyff.com/image/class/target/${job.image}`}
