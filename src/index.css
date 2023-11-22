@@ -13,8 +13,6 @@
     height: 100%;
   }
   .elementor {
-    display: grid;
-    width: 100%;
     grid-template-areas:
       "MentalStrike MentalStrike MentalStrike Blinkpool Blinkpool"
       "FlameBall Swordwind IceMissile LightningBall StoneSpike"
@@ -25,7 +23,6 @@
       "MeteoShower Sandstorm LightningStorm LightningStorm Blizzard"
       "FireMastery EarthMastery WindMastery LightningMastery WaterMastery"
       "EyeoftheStorm EyeoftheStorm EyeoftheStorm EyeoftheStorm EyeoftheStorm";
-    grid-template-columns: repeat(5, 1fr);
   }
 
   [data-skill="RockCrash"] {

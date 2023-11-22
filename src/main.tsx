@@ -53,7 +53,7 @@ const router = createBrowserRouter([
               aria-label={`Go to the ${job.name} skill tree`}
               to={`/c/${job.name}`}
               key={job.name}
-              className="flex items-center border border-gray-300 rounded-md px-7 py-2 hover:bg-gray-100 duration-150"
+              className="flex items-center border border-gray-300 rounded-md px-7 py-2 hover:bg-gray-100 duration-150 bg-white"
             >
               <img
                 src={`https://api.flyff.com/image/class/target/${job.image}`}

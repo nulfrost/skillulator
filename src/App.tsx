@@ -2,7 +2,8 @@ import treeJson from "./data/tree.json";
 import { create } from "zustand";
 import { useParams } from "react-router-dom";
 import clsx from "clsx";
-import { Fragment } from "react";
+import { Fragment, useCallback, useState } from "react";
+import lzstring from "lz-string";
 
 interface TreeState {
   tree: typeof treeJson;
@@ -92,8 +93,30 @@ function App() {
   const decreaseSkillPoint = useTreeStore((state) => state.decreaseSkillPoint);
   const tree = useTreeStore((state) => state.tree);
   let params = useParams<{ class: string }>();
+  const skills = getJobByName(params.class!, tree).skills;
+  const [copied, setCopied] = useState(false);
+  const [skillTree, setSkillTree] = useState(skills);
 
   const jobId = getJobByName(params.class!, tree).id;
+
+  const copyToClipboard = useCallback(async () => {
+    let treeCode = "";
+    if (jobId) {
+      const compressedCode = lzstring.compressToBase64(JSON.stringify(skills));
+      treeCode += `${compressedCode}`;
+    }
+
+    try {
+      if (navigator.clipboard && !copied) {
+        await navigator.clipboard.writeText(treeCode);
+        setCopied(true);
+        window.setTimeout(() => setCopied(false), 3000);
+      }
+    } catch (e) {
+      console.error("copyToClipboard", e);
+      setCopied(false);
+    }
+  }, [params.class, copied, jobId]);
 
   return (
     <div className="p-10">
@@ -101,13 +124,28 @@ function App() {
         <h1 className="text-2xl font-bold capitalize">{params.class}</h1>
         <button
           type="button"
+          onClick={copyToClipboard}
           className="bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-md hover:bg-indigo-600 duration-150"
         >
-          Link build
+          Copy skill tree
         </button>
       </div>
-      <div className="elementor gap-1">
-        {getJobByName(params.class!, tree).skills.map((skill: any) => {
+      <div>
+        <textarea
+          onBlur={(event) => {
+            const code = event.target.value;
+            if (!code) return;
+            const decompressedCode = lzstring.decompressFromBase64(code);
+            const decompressedSkillTree = JSON.parse(decompressedCode);
+            setSkillTree(decompressedSkillTree);
+          }}
+          placeholder="Input tree code"
+          className="border border-gray-300 rounded-md w-full px-2 py-3"
+          rows={5}
+        />
+      </div>
+      <div className={clsx("gap-1 grid grid-cols-5 w-full", params.class)}>
+        {skillTree.map((skill: any) => {
           const hasMinLevelRequirements = skill.requirements.every(
             (req: any) => req.hasMinLevel === true
           );
