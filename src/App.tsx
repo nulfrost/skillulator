@@ -72,6 +72,7 @@ function App() {
           const isMaxed = skill.skillLevel === skill.levels.length;
           return (
             <Skill
+              key={skill.id}
               hasMinLevelRequirements={hasMinLevelRequirements}
               isMaxed={isMaxed}
               skill={skill}

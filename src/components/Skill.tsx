@@ -14,7 +14,7 @@ export default function Skill(props: SkillProps) {
   const decreaseSkillPoint = useTreeStore((state) => state.decreaseSkillPoint);
   return (
     <div
-      data-skill={props.skill.name.en.replaceAll(" ", "")}
+      data-skill={props.skill.name.en.replaceAll(" ", "").replace(/'/, "")}
       className="flex border border-gray-300 rounded-md flex-col items-center py-2 bg-white"
     >
       <button
