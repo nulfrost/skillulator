@@ -125,7 +125,8 @@ export const useTreeStore = create<TreeState>()((set) => ({
         );
         if (
           typeof foundSkill !== "undefined" &&
-          foundSkill.level < skill!.skillLevel
+          (foundSkill.level < skill!.skillLevel ||
+            foundSkill.level === skill!.skillLevel)
         ) {
           s.requirements[skillIndex].hasMinLevel = true;
         }
