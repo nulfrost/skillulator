@@ -39,7 +39,7 @@ export default function Skill(props: SkillProps) {
           decreaseSkillPoint(props.jobId!, props.skill.id);
         }}
         disabled={!props.hasMinLevelRequirements}
-        className="flex flex-col items-center"
+        className="flex flex-col items-center disabled:cursor-not-allowed"
       >
         <span
           className={clsx(
@@ -77,7 +77,7 @@ export default function Skill(props: SkillProps) {
       <button
         disabled={!props.hasMinLevelRequirements}
         className={clsx(
-          "absolute px-4 py-1 text-xs font-bold text-indigo-900 uppercase bg-indigo-100 border border-indigo-200 rounded-sm right-2 top-2",
+          "absolute px-4 py-1 text-xs font-bold text-indigo-900 uppercase bg-indigo-100 border border-indigo-200 rounded-sm right-2 top-2 disabled:cursor-not-allowed",
           props.hasMinLevelRequirements ? "grayscale-0" : "grayscale"
         )}
         onClick={() => increaseSkillToMax(props.skillId, props.jobId!)}

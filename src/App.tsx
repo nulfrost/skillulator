@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import lzstring from "lz-string";
 import { useCallback, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useTreeStore } from "./stores/treeStore";
 import { getJobByName, encodeSkills, decodeSkills } from "./utils/index";
 import Skill from "./components/Skill";
@@ -53,14 +53,20 @@ function App() {
   return (
     <div className="p-2 lg:p-5">
       <div className="flex flex-col justify-between mb-2 md:flex-row">
-        <h1 className="text-2xl font-bold capitalize">{params.class}</h1>
+        <div className="flex flex-col-reverse">
+          <h1 className="text-2xl font-bold capitalize">{params.class}</h1>
+          <Link to="/" className="mb-2 text-indigo-600 md:mb-4 hover:underline">
+            {" "}
+            &larr; Back to class selection
+          </Link>
+        </div>
         <div className="flex flex-col gap-2 md:flex-row">
           <button
             type="button"
             disabled={copied}
             onClick={copyToClipboard}
             className={clsx(
-              "bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-md hover:bg-indigo-600 duration-150",
+              "bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-md hover:bg-indigo-600 duration-150 h-min self-end w-full md:w-max",
               copied ? "disabled:bg-green-500" : undefined
             )}
           >
