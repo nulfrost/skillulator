@@ -1,0 +1,107 @@
+.ranger {
+  grid-template-areas:
+    "Pulling Pulling SlowStep SlowStep JunkArrow"
+    "FastWalker FastWalker Yo-YoMastery Yo-YoMastery BowMastery"
+    "DarkIllusion Snatch CrossLine SilentShot AimedShot"
+    "PerfectBlock DeadlySwing CounterAttack AutoShot ArrowRain"
+    ". IceArrow FlameArrow PoisonArrow ."
+    ". CriticalShot PiercingArrow Nature ."
+    ". Tripleshot Tripleshot SilentArrow ."
+    "Boomburst Boomburst Boomburst Boomburst Boomburst";
+}
+
+[data-skill="Pulling"] {
+  grid-area: Pulling;
+}
+
+[data-skill="SlowStep"] {
+  grid-area: SlowStep;
+}
+
+[data-skill="JunkArrow"] {
+  grid-area: JunkArrow;
+}
+
+[data-skill="FastWalker"] {
+  grid-area: FastWalker;
+}
+
+[data-skill="Yo-YoMastery"] {
+  grid-area: Yo-YoMastery;
+}
+
+[data-skill="BowMastery"] {
+  grid-area: BowMastery;
+}
+
+[data-skill="DarkIllusion"] {
+  grid-area: DarkIllusion;
+}
+
+[data-skill="Snatch"] {
+  grid-area: Snatch;
+}
+
+[data-skill="CrossLine"] {
+  grid-area: CrossLine;
+}
+
+[data-skill="SilentShot"] {
+  grid-area: SilentShot;
+}
+
+[data-skill="AimedShot"] {
+  grid-area: AimedShot;
+}
+
+[data-skill="PerfectBlock"] {
+  grid-area: PerfectBlock;
+}
+
+[data-skill="DeadlySwing"] {
+  grid-area: DeadlySwing;
+}
+
+[data-skill="CounterAttack"] {
+  grid-area: CounterAttack;
+}
+
+[data-skill="AutoShot"] {
+  grid-area: AutoShot;
+}
+
+[data-skill="ArrowRain"] {
+  grid-area: ArrowRain;
+}
+
+[data-skill="IceArrow"] {
+  grid-area: IceArrow;
+}
+
+[data-skill="FlameArrow"] {
+  grid-area: FlameArrow;
+}
+[data-skill="PoisonArrow"] {
+  grid-area: PoisonArrow;
+}
+
+[data-skill="CriticalShot"] {
+  grid-area: CriticalShot;
+}
+[data-skill="PiercingArrow"] {
+  grid-area: PiercingArrow;
+}
+
+[data-skill="Nature"] {
+  grid-area: Nature;
+}
+[data-skill="Tripleshot"] {
+  grid-area: Tripleshot;
+}
+[data-skill="SilentArrow"] {
+  grid-area: SilentArrow;
+}
+
+[data-skill="Boomburst"] {
+  grid-area: Boomburst;
+}
