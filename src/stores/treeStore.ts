@@ -77,6 +77,7 @@ export const useTreeStore = create<TreeState>()((set) => ({
     set((state) => {
       // we map over the pre-defined skills
       // we check the skill id and level and update the skillLevel accordingly
+      // we also need to do the check to see if the skill is the min level
       const job = getJobById(jobId, state.tree);
       job?.skills.forEach((originalTreeSkill) => {
         predefinedSkills.forEach((predefinedTreeSkill) => {

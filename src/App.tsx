@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import lzstring from "lz-string";
 import { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useTreeStore } from "./stores/treeStore";
 import { getJobByName } from "./utils/index";
 import Skill from "./components/Skill";
@@ -9,6 +9,7 @@ import Skill from "./components/Skill";
 function App() {
   const { tree, createPreloadedSkillTree } = useTreeStore();
   let params = useParams<{ class: string }>();
+  const navigate = useNavigate();
   const skills = getJobByName(params.class!, tree)?.skills;
   const [copied, setCopied] = useState(false);
 
@@ -40,6 +41,11 @@ function App() {
     const code = new URLSearchParams(window.location.search).get("tree") ?? "";
     if (!code) return;
     const decompressedCode = lzstring.decompressFromEncodedURIComponent(code);
+    if (!decompressedCode) {
+      alert("Error: Invalid tree code!");
+      navigate(`/c/${params.class}`);
+      return;
+    }
     const untangledSkillMap = decompressedCode
       .split(",")
       .map((skill) => skill.split(":"))
