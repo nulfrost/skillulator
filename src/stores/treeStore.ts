@@ -6,6 +6,10 @@ export interface TreeState {
   tree: typeof treeJson;
   increaseSkillPoint: (jobId: number, skillId: number) => void;
   decreaseSkillPoint: (jobId: number, skillId: number) => void;
+  createPreloadedSkillTree: (
+    jobId: number,
+    skills: Array<Record<string, unknown>>
+  ) => void;
 }
 
 export const useTreeStore = create<TreeState>()((set) => ({
@@ -61,6 +65,43 @@ export const useTreeStore = create<TreeState>()((set) => ({
         }
       });
 
+      return {
+        ...state,
+        tree: [...state.tree],
+      };
+    }),
+  createPreloadedSkillTree: (
+    jobId: number,
+    predefinedSkills: Array<Record<string, unknown>>
+  ) =>
+    set((state) => {
+      // we map over the pre-defined skills
+      // we check the skill id and level and update the skillLevel accordingly
+      const job = getJobById(jobId, state.tree);
+      job?.skills.forEach((originalTreeSkill) => {
+        predefinedSkills.forEach((predefinedTreeSkill) => {
+          if (originalTreeSkill.id === predefinedTreeSkill.skill) {
+            originalTreeSkill.skillLevel = predefinedTreeSkill.level;
+          }
+        });
+
+        const skill = getSkillById(originalTreeSkill.id, job?.skills!);
+
+        job?.skills.forEach((s) => {
+          const foundSkill = s.requirements.find(
+            (sz) => sz.skill === originalTreeSkill.id
+          );
+          const skillIndex = s.requirements.findIndex(
+            (sx) => sx.skill === originalTreeSkill.id
+          );
+          if (
+            typeof foundSkill !== "undefined" &&
+            foundSkill.level <= skill!.skillLevel
+          ) {
+            s.requirements[skillIndex].hasMinLevel = true;
+          }
+        });
+      });
       return {
         ...state,
         tree: [...state.tree],

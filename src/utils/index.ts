@@ -12,6 +12,7 @@ export function getSkillById(
 }
 
 export function getJobByName(jobName: string, jobs: TreeState["tree"]) {
+  // @ts-ignore
   return jobs.find(
     (job) => job.name.en.toLowerCase() === jobName.toLowerCase()
   );

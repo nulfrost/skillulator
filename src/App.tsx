@@ -1,25 +1,27 @@
 import clsx from "clsx";
 import lzstring from "lz-string";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useTreeStore } from "./stores/treeStore";
 import { getJobByName } from "./utils/index";
 import Skill from "./components/Skill";
 
 function App() {
-  const tree = useTreeStore((state) => state.tree);
+  const { tree, createPreloadedSkillTree } = useTreeStore();
   let params = useParams<{ class: string }>();
   const skills = getJobByName(params.class!, tree)?.skills;
   const [copied, setCopied] = useState(false);
-  const [skillTree, setSkillTree] = useState(skills);
 
   const jobId = getJobByName(params.class!, tree)?.id;
 
   const copyToClipboard = useCallback(async () => {
-    let treeCode = "";
+    let treeCode = `${window.location.origin}/c/${params.class}`;
     if (jobId) {
-      const compressedCode = lzstring.compressToBase64(JSON.stringify(skills));
-      treeCode += `${compressedCode.trim()}`;
+      const skillMap = skills
+        ?.map((skill) => `${skill.id}:${skill.skillLevel}`)
+        .join(",");
+      const encondedTree = lzstring.compressToEncodedURIComponent(skillMap!);
+      treeCode += `?tree=${encondedTree}`;
     }
 
     try {
@@ -33,6 +35,18 @@ function App() {
       setCopied(false);
     }
   }, [params.class, copied, jobId]);
+
+  useEffect(() => {
+    const code = new URLSearchParams(window.location.search).get("tree") ?? "";
+    if (!code) return;
+    const decompressedCode = lzstring.decompressFromEncodedURIComponent(code);
+    const untangledSkillMap = decompressedCode
+      .split(",")
+      .map((skill) => skill.split(":"))
+      .map((s) => ({ skill: +s[0], level: +s[1] }));
+
+    createPreloadedSkillTree(jobId!, untangledSkillMap);
+  }, []);
 
   return (
     <div className="p-10">
@@ -50,22 +64,8 @@ function App() {
           {copied ? "Copied code to clipboard!" : "Copy skill tree"}
         </button>
       </div>
-      <div>
-        <textarea
-          onBlur={(event) => {
-            const code = event.target.value;
-            if (!code) return;
-            const decompressedCode = lzstring.decompressFromBase64(code);
-            const decompressedSkillTree = JSON.parse(decompressedCode);
-            setSkillTree(decompressedSkillTree);
-          }}
-          placeholder="Input tree code"
-          className="border border-gray-300 rounded-md w-full px-2 py-3 resize-none"
-          rows={5}
-        />
-      </div>
       <div className={clsx("gap-1 grid grid-cols-5 w-full", params.class)}>
-        {skillTree?.map((skill) => {
+        {skills?.map((skill) => {
           const hasMinLevelRequirements = skill.requirements.every(
             (req: any) => req.hasMinLevel === true
           );

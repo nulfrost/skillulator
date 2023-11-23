@@ -1,0 +1,160 @@
+.psykeeper {
+  grid-template-areas:
+    "MentalStrike MentalStrike MentalStrike Blinkpool Blinkpool"
+    "FlameBall Swordwind IceMissile LightningBall StoneSpike"
+    "FlameGeyser Strongwind Waterball LightningRam Rooting"
+    "FireStrike WindCutter WaterWell LightningShock RockCrash"
+    "Firebird StoneSpear Void LightningStrike Iceshark"
+    "Burningfield Earthquake Windfield ElectricShock PoisonCloud"
+    "MeteoShower Sandstorm LightningStorm LightningStorm Blizzard"
+    "FireMastery EarthMastery WindMastery LightningMastery WaterMastery"
+    "EyeoftheStorm EyeoftheStorm EyeoftheStorm EyeoftheStorm EyeoftheStorm";
+}
+
+[data-skill="RockCrash"] {
+  grid-area: RockCrash;
+}
+
+[data-skill="WindCutter"] {
+  grid-area: WindCutter;
+}
+
+[data-skill="MentalStrike"] {
+  grid-area: MentalStrike;
+}
+
+[data-skill="IceMissile"] {
+  grid-area: IceMissile;
+}
+
+[data-skill="Strongwind"] {
+  grid-area: Strongwind;
+}
+
+[data-skill="Waterball"] {
+  grid-area: Waterball;
+}
+
+[data-skill="LightningBall"] {
+  grid-area: LightningBall;
+}
+
+[data-skill="LightningRam"] {
+  grid-area: LightningRam;
+}
+
+[data-skill="FireStrike"] {
+  grid-area: FireStrike;
+}
+
+[data-skill="FlameBall"] {
+  grid-area: FlameBall;
+}
+
+[data-skill="LightningStrike"] {
+  grid-area: LightningStrike;
+}
+
+[data-skill="WaterWell"] {
+  grid-area: WaterWell;
+}
+
+[data-skill="StoneSpike"] {
+  grid-area: StoneSpike;
+}
+
+[data-skill="FlameGeyser"] {
+  grid-area: FlameGeyser;
+}
+
+[data-skill="Rooting"] {
+  grid-area: Rooting;
+}
+
+[data-skill="Sandstorm"] {
+  grid-area: Sandstorm;
+}
+
+[data-skill="Firebird"] {
+  grid-area: Firebird;
+}
+
+[data-skill="MeteoShower"] {
+  grid-area: MeteoShower;
+}
+
+[data-skill="StoneSpear"] {
+  grid-area: StoneSpear;
+}
+
+[data-skill="LightningMastery"] {
+  grid-area: LightningMastery;
+}
+
+[data-skill="Void"] {
+  grid-area: Void;
+}
+
+[data-skill="LightningShock"] {
+  grid-area: LightningShock;
+}
+
+[data-skill="Blinkpool"] {
+  grid-area: Blinkpool;
+}
+
+[data-skill="Swordwind"] {
+  grid-area: Swordwind;
+}
+
+[data-skill="FireMastery"] {
+  grid-area: FireMastery;
+}
+
+[data-skill="Windfield"] {
+  grid-area: Windfield;
+}
+
+[data-skill="Burningfield"] {
+  grid-area: Burningfield;
+}
+
+[data-skill="LightningStorm"] {
+  grid-area: LightningStorm;
+}
+
+[data-skill="WindMastery"] {
+  grid-area: WindMastery;
+}
+
+[data-skill="Blizzard"] {
+  grid-area: Blizzard;
+}
+
+[data-skill="Earthquake"] {
+  grid-area: Earthquake;
+}
+
+[data-skill="PoisonCloud"] {
+  grid-area: PoisonCloud;
+}
+
+[data-skill="Iceshark"] {
+  grid-area: Iceshark;
+}
+
+[data-skill="ElectricShock"] {
+  grid-area: ElectricShock;
+}
+
+[data-skill="EarthMastery"] {
+  grid-area: EarthMastery;
+}
+
+[data-skill="WaterMastery"] {
+  grid-area: WaterMastery;
+}
+
+[data-skill="EyeoftheStorm"] {
+  grid-area: EyeoftheStorm;
+}
