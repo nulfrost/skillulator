@@ -38,6 +38,7 @@ function App() {
   }, [params.class, copied, jobId]);
 
   useEffect(() => {
+    document.title = `Skillulator | ${params.class} skill tree`;
     const code = new URLSearchParams(window.location.search).get("tree") ?? "";
     if (!code) return;
     const decompressedCode = lzstring.decompressFromEncodedURIComponent(code);
