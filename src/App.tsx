@@ -52,9 +52,9 @@ function App() {
 
   return (
     <div className="p-2 lg:p-10">
-      <div className="flex flex-col justify-between mb-2 lg:flex-row">
+      <div className="flex flex-col justify-between mb-2 md:flex-row">
         <h1 className="text-2xl font-bold capitalize">{params.class}</h1>
-        <div className="flex flex-col gap-2 lg:flex-row">
+        <div className="flex flex-col gap-2 md:flex-row">
           <button
             type="button"
             disabled={copied}
@@ -76,7 +76,7 @@ function App() {
       </div>
       <div
         className={clsx(
-          "gap-1 lg:grid lg:grid-cols-5 w-full flex flex-wrap",
+          "gap-1 md:grid md:grid-cols-5 w-full flex flex-wrap",
           params.class
         )}
       >
