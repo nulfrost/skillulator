@@ -51,7 +51,7 @@ function App() {
   }, []);
 
   return (
-    <div className="p-2 lg:p-5">
+    <div className="p-2 mx-auto lg:p-5 2xl:max-w-[1920px]">
       <div className="flex flex-col justify-between mb-2 md:flex-row">
         <div className="flex flex-col-reverse">
           <h1 className="text-2xl font-bold capitalize">{params.class}</h1>
