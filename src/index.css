@@ -3,6 +3,7 @@
 @import url("./css/ringmaster.css");
 @import url("./css/billposter.css");
 @import url("./css//knight.css");
+@import url("./css//psykeeper.css");
 
 @tailwind base;
 @tailwind components;

@@ -4,11 +4,10 @@
     "FlameBall Swordwind IceMissile LightningBall StoneSpike"
     "FlameGeyser Strongwind Waterball LightningRam Rooting"
     "FireStrike WindCutter WaterWell LightningShock RockCrash"
-    "Firebird StoneSpear Void LightningStrike Iceshark"
-    "Burningfield Earthquake Windfield ElectricShock PoisonCloud"
-    "MeteoShower Sandstorm LightningStorm LightningStorm Blizzard"
-    "FireMastery EarthMastery WindMastery LightningMastery WaterMastery"
-    "EyeoftheStorm EyeoftheStorm EyeoftheStorm EyeoftheStorm EyeoftheStorm";
+    ". Demonology PsychicBomb CrucioSpell ."
+    ". Satanology SpiritBomb MaximumCrisis ."
+    ". . PsychicWall PsychicSquare ."
+    "GravityWell GravityWell GravityWell GravityWell GravityWell";
 }
 
 [data-skill="RockCrash"] {
@@ -75,28 +74,28 @@
   grid-area: Sandstorm;
 }
 
-[data-skill="Firebird"] {
-  grid-area: Firebird;
+[data-skill="Demonology"] {
+  grid-area: Demonology;
 }
 
-[data-skill="MeteoShower"] {
-  grid-area: MeteoShower;
+[data-skill="PsychicBomb"] {
+  grid-area: PsychicBomb;
 }
 
-[data-skill="StoneSpear"] {
-  grid-area: StoneSpear;
+[data-skill="Satanology"] {
+  grid-area: Satanology;
 }
 
-[data-skill="LightningMastery"] {
-  grid-area: LightningMastery;
+[data-skill="SpiritBomb"] {
+  grid-area: SpiritBomb;
 }
 
-[data-skill="Void"] {
-  grid-area: Void;
+[data-skill="MaximumCrisis"] {
+  grid-area: MaximumCrisis;
 }
 
-[data-skill="LightningShock"] {
-  grid-area: LightningShock;
+[data-skill="PsychicSquare"] {
+  grid-area: PsychicSquare;
 }
 
 [data-skill="Blinkpool"] {
@@ -107,54 +106,10 @@
   grid-area: Swordwind;
 }
 
-[data-skill="FireMastery"] {
-  grid-area: FireMastery;
+[data-skill="PsychicWall"] {
+  grid-area: PsychicWall;
 }
 
-[data-skill="Windfield"] {
-  grid-area: Windfield;
-}
-
-[data-skill="Burningfield"] {
-  grid-area: Burningfield;
-}
-
-[data-skill="LightningStorm"] {
-  grid-area: LightningStorm;
-}
-
-[data-skill="WindMastery"] {
-  grid-area: WindMastery;
-}
-
-[data-skill="Blizzard"] {
-  grid-area: Blizzard;
-}
-
-[data-skill="Earthquake"] {
-  grid-area: Earthquake;
-}
-
-[data-skill="PoisonCloud"] {
-  grid-area: PoisonCloud;
-}
-
-[data-skill="Iceshark"] {
-  grid-area: Iceshark;
-}
-
-[data-skill="ElectricShock"] {
-  grid-area: ElectricShock;
-}
-
-[data-skill="EarthMastery"] {
-  grid-area: EarthMastery;
-}
-
-[data-skill="WaterMastery"] {
-  grid-area: WaterMastery;
-}
-
-[data-skill="EyeoftheStorm"] {
-  grid-area: EyeoftheStorm;
+[data-skill="GravityWell"] {
+  grid-area: GravityWell;
 }
