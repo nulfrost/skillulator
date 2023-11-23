@@ -6,12 +6,13 @@ const TREE_CLEAN_STATE = [...treeJson];
 export interface TreeState {
   tree: typeof treeJson;
   increaseSkillPoint: (jobId: number, skillId: number) => void;
+  increaseSkillToMax: (jobId: number, skillId: number) => void;
   decreaseSkillPoint: (jobId: number, skillId: number) => void;
   createPreloadedSkillTree: (
     jobId: number,
     skills: Array<Record<string, unknown>>
   ) => void;
-  resetSkillTree: () => void;
+  // resetSkillTree: () => void;
 }
 
 export const useTreeStore = create<TreeState>()((set) => ({
@@ -110,12 +111,36 @@ export const useTreeStore = create<TreeState>()((set) => ({
         tree: [...state.tree],
       };
     }),
-  resetSkillTree: () =>
+  increaseSkillToMax: (skillId: number, jobId: number) =>
     set((state) => {
-      console.log(TREE_CLEAN_STATE);
+      const job = getJobById(jobId, state.tree);
+      const skill = getSkillById(skillId, job?.skills!);
+      skill!.skillLevel! = skill!.levels.length;
+
+      // refactor this block of code
+      job?.skills.forEach((s) => {
+        const foundSkill = s.requirements.find((sz) => sz.skill === skillId);
+        const skillIndex = s.requirements.findIndex(
+          (sx) => sx.skill === skillId
+        );
+        if (
+          typeof foundSkill !== "undefined" &&
+          foundSkill.level < skill!.skillLevel
+        ) {
+          s.requirements[skillIndex].hasMinLevel = true;
+        }
+      });
       return {
         ...state,
-        tree: TREE_CLEAN_STATE,
+        tree: [...state.tree],
       };
     }),
+  // resetSkillTree: () =>
+  //   set((state) => {
+  //     console.log(TREE_CLEAN_STATE);
+  //     return {
+  //       ...state,
+  //       tree: TREE_CLEAN_STATE,
+  //     };
+  //   }),
 }));

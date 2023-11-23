@@ -7,7 +7,7 @@ import { getJobByName, encodeSkills, decodeSkills } from "./utils/index";
 import Skill from "./components/Skill";
 
 function App() {
-  const { tree, createPreloadedSkillTree, resetSkillTree } = useTreeStore();
+  const { tree, createPreloadedSkillTree } = useTreeStore();
   let params = useParams<{ class: string }>();
   const navigate = useNavigate();
   const skills = getJobByName(params.class!, tree)?.skills;
@@ -51,7 +51,7 @@ function App() {
   }, []);
 
   return (
-    <div className="p-2 lg:p-10">
+    <div className="p-2 lg:p-5">
       <div className="flex flex-col justify-between mb-2 md:flex-row">
         <h1 className="text-2xl font-bold capitalize">{params.class}</h1>
         <div className="flex flex-col gap-2 md:flex-row">
@@ -66,17 +66,17 @@ function App() {
           >
             {copied ? "Copied code to clipboard!" : "Copy skill tree"}
           </button>
-          <button
+          {/* <button
             className="px-4 py-1.5 bg-red-100 text-red-900 rounded-md border border-red-300 hover:bg-red-200 duration-150"
             onClick={resetSkillTree}
           >
             Reset skill tree
-          </button>
+          </button> */}
         </div>
       </div>
       <div
         className={clsx(
-          "gap-1 md:grid md:grid-cols-5 w-full flex flex-wrap",
+          "md:gap-1 md:grid md:grid-cols-5 w-full space-y-1 md:space-y-0",
           params.class
         )}
       >

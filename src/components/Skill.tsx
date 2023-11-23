@@ -10,12 +10,12 @@ interface SkillProps {
 }
 
 export default function Skill(props: SkillProps) {
-  const increaseSkillPoint = useTreeStore((state) => state.increaseSkillPoint);
-  const decreaseSkillPoint = useTreeStore((state) => state.decreaseSkillPoint);
+  const { increaseSkillPoint, decreaseSkillPoint, increaseSkillToMax } =
+    useTreeStore();
   return (
     <div
       data-skill={props.skill.name.en.replaceAll(" ", "").replace(/'/, "")}
-      className="flex flex-col items-center flex-auto py-2 bg-white border border-gray-300 rounded-md"
+      className="relative flex flex-col items-center flex-1 py-2 bg-white border border-gray-300 rounded-md basis-1/2"
     >
       <button
         onKeyDown={(event) => {
@@ -39,7 +39,7 @@ export default function Skill(props: SkillProps) {
           decreaseSkillPoint(props.jobId!, props.skill.id);
         }}
         disabled={!props.hasMinLevelRequirements}
-        className="flex flex-col items-center w-full"
+        className="flex flex-col items-center"
       >
         <span
           className={clsx(
@@ -74,6 +74,16 @@ export default function Skill(props: SkillProps) {
           />
         ))}
       </div>
+      <button
+        disabled={!props.hasMinLevelRequirements}
+        className={clsx(
+          "absolute px-4 py-1 text-xs font-bold text-indigo-900 uppercase bg-indigo-100 border border-indigo-200 rounded-sm right-2 top-2",
+          props.hasMinLevelRequirements ? "grayscale-0" : "grayscale"
+        )}
+        onClick={() => increaseSkillToMax(props.skillId, props.jobId!)}
+      >
+        max
+      </button>
     </div>
   );
 }
