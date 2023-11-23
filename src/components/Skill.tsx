@@ -15,7 +15,7 @@ export default function Skill(props: SkillProps) {
   return (
     <div
       data-skill={props.skill.name.en.replaceAll(" ", "").replace(/'/, "")}
-      className="flex border border-gray-300 rounded-md flex-col items-center py-2 bg-white"
+      className="flex flex-col items-center flex-auto py-2 bg-white border border-gray-300 rounded-md"
     >
       <button
         onKeyDown={(event) => {
@@ -32,12 +32,14 @@ export default function Skill(props: SkillProps) {
           event.preventDefault();
           if (event.type === "click") {
             increaseSkillPoint(props.jobId!, props.skill.id);
-          } else if (event.type === "contextmenu") {
-            decreaseSkillPoint(props.jobId!, props.skill.id);
           }
         }}
+        onContextMenu={(event) => {
+          event.preventDefault();
+          decreaseSkillPoint(props.jobId!, props.skill.id);
+        }}
         disabled={!props.hasMinLevelRequirements}
-        className="w-full flex flex-col items-center"
+        className="flex flex-col items-center w-full"
       >
         <span
           className={clsx(

@@ -64,7 +64,7 @@ function LandingPage() {
   return (
     <div className="flex flex-col items-center justify-center h-full px-3 py-3">
       <h1 className="mb-4 text-3xl font-bold">Skillulator</h1>
-      <div className="grid w-full grid-cols-4 gap-2 lg:w-max">
+      <div className="grid w-full grid-cols-2 gap-2 lg:grid-cols-4 lg:w-max">
         {JOBS.map((job) => (
           <Link
             aria-label={`Go to the ${job.name} skill tree`}

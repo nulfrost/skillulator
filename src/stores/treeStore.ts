@@ -2,6 +2,7 @@ import treeJson from "../data/tree.json";
 import { create } from "zustand";
 import { getJobById, getSkillById } from "../utils";
 
+const TREE_CLEAN_STATE = [...treeJson];
 export interface TreeState {
   tree: typeof treeJson;
   increaseSkillPoint: (jobId: number, skillId: number) => void;
@@ -10,6 +11,7 @@ export interface TreeState {
     jobId: number,
     skills: Array<Record<string, unknown>>
   ) => void;
+  resetSkillTree: () => void;
 }
 
 export const useTreeStore = create<TreeState>()((set) => ({
@@ -106,6 +108,14 @@ export const useTreeStore = create<TreeState>()((set) => ({
       return {
         ...state,
         tree: [...state.tree],
+      };
+    }),
+  resetSkillTree: () =>
+    set((state) => {
+      console.log(TREE_CLEAN_STATE);
+      return {
+        ...state,
+        tree: TREE_CLEAN_STATE,
       };
     }),
 }));

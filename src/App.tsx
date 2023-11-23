@@ -3,11 +3,11 @@ import lzstring from "lz-string";
 import { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTreeStore } from "./stores/treeStore";
-import { getJobByName } from "./utils/index";
+import { getJobByName, encodeSkills, decodeSkills } from "./utils/index";
 import Skill from "./components/Skill";
 
 function App() {
-  const { tree, createPreloadedSkillTree } = useTreeStore();
+  const { tree, createPreloadedSkillTree, resetSkillTree } = useTreeStore();
   let params = useParams<{ class: string }>();
   const navigate = useNavigate();
   const skills = getJobByName(params.class!, tree)?.skills;
@@ -18,9 +18,7 @@ function App() {
   const copyToClipboard = useCallback(async () => {
     let treeCode = `${window.location.origin}/c/${params.class}`;
     if (jobId) {
-      const skillMap = skills
-        ?.map((skill) => `${skill.id}:${skill.skillLevel}`)
-        .join(",");
+      const skillMap = encodeSkills(skills!);
       const encondedTree = lzstring.compressToEncodedURIComponent(skillMap!);
       treeCode += `?tree=${encondedTree}`;
     }
@@ -47,47 +45,59 @@ function App() {
       navigate(`/c/${params.class}`);
       return;
     }
-    const untangledSkillMap = decompressedCode
-      .split(",")
-      .map((skill) => skill.split(":"))
-      .map((s) => ({ skill: +s[0], level: +s[1] }));
+    const untangledSkillMap = decodeSkills(decompressedCode);
 
     createPreloadedSkillTree(jobId!, untangledSkillMap);
   }, []);
 
   return (
-    <div className="p-10">
-      <div className="flex justify-between mb-4">
+    <div className="p-2 lg:p-10">
+      <div className="flex flex-col justify-between mb-2 lg:flex-row">
         <h1 className="text-2xl font-bold capitalize">{params.class}</h1>
-        <button
-          type="button"
-          disabled={copied}
-          onClick={copyToClipboard}
-          className={clsx(
-            "bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-md hover:bg-indigo-600 duration-150",
-            copied ? "disabled:bg-green-500" : undefined
-          )}
-        >
-          {copied ? "Copied code to clipboard!" : "Copy skill tree"}
-        </button>
+        <div className="flex flex-col gap-2 lg:flex-row">
+          <button
+            type="button"
+            disabled={copied}
+            onClick={copyToClipboard}
+            className={clsx(
+              "bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-md hover:bg-indigo-600 duration-150",
+              copied ? "disabled:bg-green-500" : undefined
+            )}
+          >
+            {copied ? "Copied code to clipboard!" : "Copy skill tree"}
+          </button>
+          <button
+            className="px-4 py-1.5 bg-red-100 text-red-900 rounded-md border border-red-300 hover:bg-red-200 duration-150"
+            onClick={resetSkillTree}
+          >
+            Reset skill tree
+          </button>
+        </div>
       </div>
-      <div className={clsx("gap-1 grid grid-cols-5 w-full", params.class)}>
-        {skills?.map((skill) => {
-          const hasMinLevelRequirements = skill.requirements.every(
-            (req: any) => req.hasMinLevel === true
-          );
-          const isMaxed = skill.skillLevel === skill.levels.length;
-          return (
-            <Skill
-              key={skill.id}
-              hasMinLevelRequirements={hasMinLevelRequirements}
-              isMaxed={isMaxed}
-              skill={skill}
-              skillId={skill.id}
-              jobId={jobId}
-            />
-          );
-        })}
+      <div
+        className={clsx(
+          "gap-1 lg:grid lg:grid-cols-5 w-full flex flex-wrap",
+          params.class
+        )}
+      >
+        {skills
+          ?.sort((a, b) => a.level - b.level)
+          .map((skill) => {
+            const hasMinLevelRequirements = skill.requirements.every(
+              (req: any) => req.hasMinLevel === true
+            );
+            const isMaxed = skill.skillLevel === skill.levels.length;
+            return (
+              <Skill
+                key={skill.id}
+                hasMinLevelRequirements={hasMinLevelRequirements}
+                isMaxed={isMaxed}
+                skill={skill}
+                skillId={skill.id}
+                jobId={jobId}
+              />
+            );
+          })}
       </div>
     </div>
   );
