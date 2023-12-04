@@ -7,33 +7,40 @@ import { getJobByName, encodeTree, decodeTree } from "./utils/index";
 import Skill from "./components/Skill";
 
 function App() {
+  const jobTree = useTreeStore((state) => state.jobTree);
+  const createPreloadedSkillTree = useTreeStore(
+    (state) => state.createPreloadedSkillTree
+  );
+  const setSkillPoints = useTreeStore((state) => state.setSkillPoints);
+  const skillPoints = useTreeStore((state) => state.skillPoints);
+  const resetSkillTree = useTreeStore((state) => state.resetSkillTree);
 
-  const jobTree = useTreeStore((state) => state.jobTree)
-  const createPreloadedSkillTree = useTreeStore((state) => state.createPreloadedSkillTree)
-  const setSkillPoints = useTreeStore((state) => state.setSkillPoints)
-  const skillPoints = useTreeStore((state) => state.skillPoints)
-  const resetSkillTree = useTreeStore((state) => state.resetSkillTree)
-  
   let params = useParams<{ class: string }>();
   const navigate = useNavigate();
-  const skills = getJobByName(params.class!, useTreeStore.getState().jobTree)?.skills;
+  const skills = getJobByName(
+    params.class!,
+    useTreeStore.getState().jobTree
+  )?.skills;
 
   const [copied, setCopied] = useState(false);
   const [level, setLevel] = useState(15);
 
   const jobId = getJobByName(params.class!, jobTree)?.id;
 
-  const handleLevelChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setSkillPoints(jobId!, +event.target.value);
-    setLevel(+event.target.value);
-  }, []);
+  const handleLevelChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      setSkillPoints(jobId!, +event.target.value);
+      setLevel(+event.target.value);
+    },
+    []
+  );
 
   const copyToClipboard = useCallback(async () => {
     let treeCode = `${window.location.origin}/c/${params.class}`;
     if (jobId) {
-      console.log(skills)
+      console.log(skills);
       const treeMap = encodeTree(skills!, level);
-      console.log(treeMap, skills)
+      console.log(treeMap, skills);
       const encondedTree = lzstring.compressToEncodedURIComponent(treeMap!);
       treeCode += `?tree=${encondedTree}`;
     }
@@ -72,6 +79,8 @@ function App() {
     setSkillPoints(jobId!, +characterLevel!);
   }, []);
 
+  console.log(skills);
+
   return (
     <div className="p-2 mx-auto lg:p-5 2xl:max-w-[1920px]">
       <div className="flex flex-col justify-between mb-2 md:flex-row">
@@ -83,24 +92,26 @@ function App() {
           </Link>
         </div>
         <div className="flex flex-col gap-2 md:flex-row">
-          <div className="self-end h-min">
-            <p>Available skill points</p>
-            <span className="font-bold">{skillPoints}</span>
-          </div>
-          <div className="flex flex-col self-end h-min">
-            <label htmlFor="characterLevel" className="text-sm">
-              Character Level
-            </label>
-            <input
-              type="number"
-              className="px-4 py-1.5 border border-gray-300 rounded-md"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              value={level}
-              onChange={handleLevelChange}
-              min={15}
-              max={160}
-            />
+          <div className="flex justify-between gap-2">
+            <div className="self-end h-min">
+              <p>Available skill points</p>
+              <span className="font-bold">{skillPoints}</span>
+            </div>
+            <div className="flex flex-col self-end h-min">
+              <label htmlFor="characterLevel" className="text-sm">
+                Character Level
+              </label>
+              <input
+                type="number"
+                className="px-4 py-1.5 border border-gray-300 rounded-md"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                value={level}
+                onChange={handleLevelChange}
+                min={15}
+                max={160}
+              />
+            </div>
           </div>
           <button
             type="button"
@@ -114,10 +125,10 @@ function App() {
             {copied ? "Copied code to clipboard!" : "Copy skill tree"}
           </button>
           <button
-            className="px-4 py-1.5 bg-red-100 text-red-900 rounded-md border border-red-300 hover:bg-red-200 duration-150 h-min self-end"
+            className="px-4 py-1.5 bg-red-100 text-red-900 rounded-md border border-red-300 hover:bg-red-200 duration-150 h-min self-end w-full md:w-max"
             onClick={() => {
-              resetSkillTree(jobId!)
-              setLevel(15)
+              resetSkillTree(jobId!);
+              setLevel(15);
             }}
           >
             Reset skill tree
@@ -131,7 +142,7 @@ function App() {
         )}
       >
         {skills
-          // ?.sort((a, b) => a.level - b.level)
+          ?.toSorted((a, b) => a.level - b.level)
           ?.map((skill) => {
             const hasMinLevelRequirements = skill.requirements.every(
               (req: any) => req.hasMinLevel === true

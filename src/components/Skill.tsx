@@ -43,11 +43,11 @@ export default function Skill(props: SkillProps) {
       >
         <span
           className={clsx(
-            "font-bold block",
+            "font-bold block uppercase",
             props.hasMinLevelRequirements ? "text-gray-900" : "text-gray-300"
           )}
         >
-          {props.isMaxed ? "MAX" : `${props.skill.skillLevel}`}
+          {props.isMaxed ? "max" : `${props.skill.skillLevel}`}
         </span>
         <img
           className={clsx(
@@ -74,16 +74,30 @@ export default function Skill(props: SkillProps) {
           />
         ))}
       </div>
-      <button
-        disabled={!props.hasMinLevelRequirements}
-        className={clsx(
-          "absolute px-4 py-1 text-xs font-bold text-indigo-900 uppercase bg-indigo-100 border border-indigo-200 rounded-sm right-2 top-2 disabled:cursor-not-allowed",
-          props.hasMinLevelRequirements ? "grayscale-0" : "grayscale"
-        )}
-        onClick={() => increaseSkillToMax(props.skillId, props.jobId!)}
-      >
-        max
-      </button>
+      <div>
+        <button
+          className={clsx("absolute px-4 py-1 text-xs font-bold text-indigo-900 uppercase bg-indigo-100 border border-indigo-200 rounded-sm top-2 left-2 disabled:cursor-not-allowed md:hidden", props.skill.skillLevel === 0 ? "grayscale" : "grayscale-0")}
+          disabled={props.skill.skillLevel === 0}
+          onClick={(event) => {
+            event.preventDefault();
+            if (event.type === "click") {
+              decreaseSkillPoint(props.jobId!, props.skill.id);
+            }
+          }}
+        >
+          lvl down
+        </button>
+        <button
+          disabled={!props.hasMinLevelRequirements}
+          className={clsx(
+            "absolute px-4 py-1 text-xs font-bold text-indigo-900 uppercase bg-indigo-100 border border-indigo-200 rounded-sm right-2 top-2 disabled:cursor-not-allowed",
+            props.hasMinLevelRequirements ? "grayscale-0" : "grayscale"
+          )}
+          onClick={() => increaseSkillToMax(props.skillId, props.jobId!)}
+        >
+          max
+        </button>
+      </div>
     </div>
   );
 }
