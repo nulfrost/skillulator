@@ -17,6 +17,9 @@ dependencies:
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
+  immer:
+    specifier: ^10.0.3
+    version: 10.0.3
   lz-string:
     specifier: ^1.5.0
     version: 1.5.0
@@ -34,7 +37,7 @@ dependencies:
     version: 0.5.1
   zustand:
     specifier: ^4.4.6
-    version: 4.4.6(@types/react@18.2.38)(react@18.2.0)
+    version: 4.4.6(@types/react@18.2.38)(immer@10.0.3)(react@18.2.0)
 
 devDependencies:
   '@types/brotli':
@@ -958,6 +961,10 @@ packages:
       function-bind: 1.1.2
     dev: true
 
+  /immer@10.0.3:
+    resolution: {integrity: sha512-pwupu3eWfouuaowscykeckFmVTpqbzW+rXFCX8rQLkZzM9ftBmU/++Ra+o+L27mz03zJTlyV4UUr+fdKNffo4A==}
+    dev: false
+
   /inflight@1.0.6:
     resolution: {integrity: sha512-k92I/b08q4wvFscXCLvqfsHCrjrF7yiXsQuIVvVE7N82W3+aqpzuUdBbfhWcy/FZR3/4IgflMgKLOsvPDrGCJA==}
     dependencies:
@@ -1487,7 +1494,7 @@ packages:
     engines: {node: '>= 14'}
     dev: true
 
-  /zustand@4.4.6(@types/react@18.2.38)(react@18.2.0):
+  /zustand@4.4.6(@types/react@18.2.38)(immer@10.0.3)(react@18.2.0):
     resolution: {integrity: sha512-Rb16eW55gqL4W2XZpJh0fnrATxYEG3Apl2gfHTyDSE965x/zxslTikpNch0JgNjJA9zK6gEFW8Fl6d1rTZaqgg==}
     engines: {node: '>=12.7.0'}
     peerDependencies:
@@ -1503,6 +1510,7 @@ packages:
         optional: true
     dependencies:
       '@types/react': 18.2.38
+      immer: 10.0.3
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false

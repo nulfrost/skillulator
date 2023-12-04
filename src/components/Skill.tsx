@@ -1,8 +1,8 @@
-import { useTreeStore, TreeState } from "../stores/treeStore";
+import { useTreeStore, State } from "../zustand/treeStore";
 import clsx from "clsx";
 
 interface SkillProps {
-  skill: TreeState["tree"][0]["skills"][0];
+  skill: State["jobTree"][0]["skills"][0];
   jobId: number | undefined;
   skillId: number;
   hasMinLevelRequirements: boolean;
@@ -10,7 +10,7 @@ interface SkillProps {
 }
 
 export default function Skill(props: SkillProps) {
-  const { increaseSkillPoint, decreaseSkillPoint, increaseSkillToMax } =
+  const { decreaseSkillPoint, increaseSkillToMax, increaseSkillPoint } =
     useTreeStore();
   return (
     <div

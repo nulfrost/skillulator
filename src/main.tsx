@@ -85,6 +85,7 @@ function LandingPage() {
       <ul className="text-sm list-disc list-inside">
         <li>Use the left and right click to level up or level down a skill</li>
         <li>The arrow up and arrow down keys can be used as well</li>
+        <li>You can set a level using the character level input</li>
         <li>
           Clicking "copy skill tree" will create a link for you to share with
           other people
