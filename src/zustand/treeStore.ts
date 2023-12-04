@@ -115,33 +115,29 @@ export const useTreeStore = create<State & Actions>()((set, get) => ({
       })
     ),
   decreaseSkillPoint: (jobId: number, skillId: number) =>
-    set((state: State) => {
-      // find the job
-      const job = getJobById(jobId, state.jobTree);
-      // find skill
-      const skill = getSkillById(skillId, job?.skills!);
-      if (skill?.skillLevel === 0) return state;
-      skill!.skillLevel -= 1;
-      state.skillPoints += skill!.skillPoints;
-      // find all required skills
-      // if the skillLevel is less than the required skills required level switch to false
-      job?.skills.forEach((s) => {
-        const foundSkill = s.requirements.find((sz) => sz.skill === skillId);
-        const skillIndex = s.requirements.findIndex(
-          (sx) => sx.skill === skillId
-        );
-        if (
-          typeof foundSkill !== "undefined" &&
-          skill!.skillLevel < foundSkill.level
-        ) {
-          s.requirements[skillIndex].hasMinLevel = false;
-        }
-      });
-      return {
-        ...state,
-        jobTree: [...state.jobTree],
-      };
-    }),
+     set(produce((state: State) => {
+       // find the job
+       const job = getJobById(jobId, state.jobTree);
+       // find skill
+       const skill = getSkillById(skillId, job?.skills!);
+       if (skill?.skillLevel === 0) return state;
+       skill!.skillLevel -= 1;
+       state.skillPoints += skill!.skillPoints;
+       // find all required skills
+       // if the skillLevel is less than the required skills required level switch to false
+       job?.skills.forEach((s) => {
+         const foundSkill = s.requirements.find((sz) => sz.skill === skillId);
+         const skillIndex = s.requirements.findIndex(
+           (sx) => sx.skill === skillId
+         );
+         if (
+           typeof foundSkill !== "undefined" &&
+           skill!.skillLevel < foundSkill.level
+         ) {
+           s.requirements[skillIndex].hasMinLevel = false;
+         }
+       });
+     })),
   createPreloadedSkillTree: (
     jobId: number,
     predefinedSkills: Array<Record<string, unknown>>
