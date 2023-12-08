@@ -12,6 +12,7 @@ import App from "./App";
 import "./index.css";
 import { Analytics } from "@vercel/analytics/react";
 import "./i18n";
+import { Navbar } from "./components/Navbar";
 
 const JOBS = [
   {
@@ -50,12 +51,17 @@ const JOBS = [
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <LandingPage />,
+    path: "/:lang",
+    element: (
+      <>
+        <Navbar />
+        <LandingPage />
+      </>
+    ),
     errorElement: <ErrorBoundary />,
   },
   {
-    path: "/c/:class",
+    path: "/:lang/c/:class",
     element: <App />,
   },
 ]);
