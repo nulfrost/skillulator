@@ -55,7 +55,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorBoundary />,
   },
   {
-    path: "/:lang/c/:class",
+    path: "/c/:class",
     element: <App />,
   },
 ]);
