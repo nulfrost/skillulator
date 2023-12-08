@@ -7,13 +7,11 @@ interface SkillProps {
   skillId: number;
   hasMinLevelRequirements: boolean;
   isMaxed: boolean;
-  lang: string;
 }
 
 export default function Skill(props: SkillProps) {
   const { decreaseSkillPoint, increaseSkillToMax, increaseSkillPoint } =
     useTreeStore();
-
   return (
     <div
       data-skill={props.skill.name.en.replaceAll(" ", "").replace(/'/, "")}
@@ -64,7 +62,7 @@ export default function Skill(props: SkillProps) {
             props.hasMinLevelRequirements ? "text-blue-500" : "text-gray-300"
           )}
         >
-          {props.skill.name[props.lang]}
+          {props.skill.name.en}
         </span>
       </button>
       <div>
@@ -78,10 +76,7 @@ export default function Skill(props: SkillProps) {
       </div>
       <div>
         <button
-          className={clsx(
-            "absolute px-4 py-1 text-xs font-bold text-indigo-900 uppercase bg-indigo-100 border border-indigo-200 rounded-sm top-2 left-2 disabled:cursor-not-allowed md:hidden",
-            props.skill.skillLevel === 0 ? "grayscale" : "grayscale-0"
-          )}
+          className={clsx("absolute px-4 py-1 text-xs font-bold text-indigo-900 uppercase bg-indigo-100 border border-indigo-200 rounded-sm top-2 left-2 disabled:cursor-not-allowed md:hidden", props.skill.skillLevel === 0 ? "grayscale" : "grayscale-0")}
           disabled={props.skill.skillLevel === 0}
           onClick={(event) => {
             event.preventDefault();
