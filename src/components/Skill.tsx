@@ -76,7 +76,10 @@ export default function Skill(props: SkillProps) {
       </div>
       <div>
         <button
-          className={clsx("absolute px-4 py-1 text-xs font-bold text-indigo-900 uppercase bg-indigo-100 border border-indigo-200 rounded-sm top-2 left-2 disabled:cursor-not-allowed md:hidden", props.skill.skillLevel === 0 ? "grayscale" : "grayscale-0")}
+          className={clsx(
+            "absolute px-4 py-1 text-xs font-bold text-indigo-900 uppercase bg-indigo-100 border border-indigo-200 rounded-sm top-2 left-2 disabled:cursor-not-allowed md:hidden",
+            props.skill.skillLevel === 0 ? "grayscale" : "grayscale-0"
+          )}
           disabled={props.skill.skillLevel === 0}
           onClick={(event) => {
             event.preventDefault();
@@ -88,10 +91,12 @@ export default function Skill(props: SkillProps) {
           lvl down
         </button>
         <button
-          disabled={!props.hasMinLevelRequirements}
+          disabled={!props.hasMinLevelRequirements || props.isMaxed}
           className={clsx(
             "absolute px-4 py-1 text-xs font-bold text-indigo-900 uppercase bg-indigo-100 border border-indigo-200 rounded-sm right-2 top-2 disabled:cursor-not-allowed",
-            props.hasMinLevelRequirements ? "grayscale-0" : "grayscale"
+            props.hasMinLevelRequirements && !props.isMaxed
+              ? "grayscale-0"
+              : "grayscale"
           )}
           onClick={() => increaseSkillToMax(props.skillId, props.jobId!)}
         >

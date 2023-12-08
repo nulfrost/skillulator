@@ -38,9 +38,7 @@ function App() {
   const copyToClipboard = useCallback(async () => {
     let treeCode = `${window.location.origin}/c/${params.class}`;
     if (jobId) {
-      console.log(skills);
       const treeMap = encodeTree(skills!, level);
-      console.log(treeMap, skills);
       const encondedTree = lzstring.compressToEncodedURIComponent(treeMap!);
       treeCode += `?tree=${encondedTree}`;
     }
@@ -78,8 +76,6 @@ function App() {
 
     setSkillPoints(jobId!, +characterLevel!);
   }, []);
-
-  console.log(skills);
 
   return (
     <div className="p-2 mx-auto lg:p-5 2xl:max-w-[1920px]">

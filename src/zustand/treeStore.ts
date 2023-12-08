@@ -77,7 +77,6 @@ export const useTreeStore = create<State & Actions>()((set, get) => ({
         let remainingSkillPoints = skillPoints - skillPointsToSubtract;
 
         state.skillPoints = remainingSkillPoints;
-        // console.log(skillPoints - (job?.skills[0].skillLevel * job?.skills[0].skillPoints))
         // return {
         //   ...state,
         //   skillPoints: state.skillPoints,
@@ -115,29 +114,31 @@ export const useTreeStore = create<State & Actions>()((set, get) => ({
       })
     ),
   decreaseSkillPoint: (jobId: number, skillId: number) =>
-     set(produce((state: State) => {
-       // find the job
-       const job = getJobById(jobId, state.jobTree);
-       // find skill
-       const skill = getSkillById(skillId, job?.skills!);
-       if (skill?.skillLevel === 0) return state;
-       skill!.skillLevel -= 1;
-       state.skillPoints += skill!.skillPoints;
-       // find all required skills
-       // if the skillLevel is less than the required skills required level switch to false
-       job?.skills.forEach((s) => {
-         const foundSkill = s.requirements.find((sz) => sz.skill === skillId);
-         const skillIndex = s.requirements.findIndex(
-           (sx) => sx.skill === skillId
-         );
-         if (
-           typeof foundSkill !== "undefined" &&
-           skill!.skillLevel < foundSkill.level
-         ) {
-           s.requirements[skillIndex].hasMinLevel = false;
-         }
-       });
-     })),
+    set(
+      produce((state: State) => {
+        // find the job
+        const job = getJobById(jobId, state.jobTree);
+        // find skill
+        const skill = getSkillById(skillId, job?.skills!);
+        if (skill?.skillLevel === 0) return state;
+        skill!.skillLevel -= 1;
+        state.skillPoints += skill!.skillPoints;
+        // find all required skills
+        // if the skillLevel is less than the required skills required level switch to false
+        job?.skills.forEach((s) => {
+          const foundSkill = s.requirements.find((sz) => sz.skill === skillId);
+          const skillIndex = s.requirements.findIndex(
+            (sx) => sx.skill === skillId
+          );
+          if (
+            typeof foundSkill !== "undefined" &&
+            skill!.skillLevel < foundSkill.level
+          ) {
+            s.requirements[skillIndex].hasMinLevel = false;
+          }
+        });
+      })
+    ),
   createPreloadedSkillTree: (
     jobId: number,
     predefinedSkills: Array<Record<string, unknown>>
@@ -179,6 +180,7 @@ export const useTreeStore = create<State & Actions>()((set, get) => ({
       produce((state: State) => {
         const job = getJobById(jobId, state.jobTree);
         const skill = getSkillById(skillId, job?.skills!);
+        if (skill!.levels.length === skill!.skillLevel) return state;
         if (skill!.levels.length * skill!.skillLevel < state.skillPoints) {
           skill!.skillLevel =
             state.skillPoints / skill!.skillPoints > skill!.levels.length
