@@ -1,5 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const languages = [
   "en",
@@ -17,17 +18,14 @@ const languages = [
 
 export function Navbar() {
   const [language, setLanguage] = useState("en");
-  useEffect(() => {
-    const preferredLanguge = window.navigator.language.split("-").at(0);
-    console.log(preferredLanguge);
-    if (preferredLanguge) {
-      setLanguage(preferredLanguge);
-    }
-  }, []);
+  const { i18n } = useTranslation();
+  const preferredLanguage = i18n.language.split("-").at(0);
 
   const handleLanguageChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setLanguage(event.target.value);
   };
+
+  console.log(i18n.language);
 
   return (
     <header className="py-4 bg-white border-b border-gray-300 shadow-sm">
