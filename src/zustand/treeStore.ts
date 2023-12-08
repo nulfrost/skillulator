@@ -185,7 +185,7 @@ export const useTreeStore = create<State & Actions>()((set, get) => ({
           skill!.skillLevel =
             state.skillPoints / skill!.skillPoints > skill!.levels.length
               ? skill!.levels.length
-              : state.skillPoints / skill!.skillPoints;
+              : Math.floor(+(state.skillPoints / skill!.skillPoints));
           state.skillPoints -= skill!.skillLevel * skill!.skillPoints;
         }
 
