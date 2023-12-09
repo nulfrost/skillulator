@@ -62,7 +62,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/:lang/c/:class",
-    element: <App />,
+    element: (
+      <>
+        <Navbar />
+        <App />
+      </>
+    ),
   },
 ]);
 
@@ -71,16 +76,16 @@ function LandingPage() {
     document.title = `Skillulator | Optimize your FlyFF character`;
   }, []);
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <Suspense fallback="loading...">
-      <div className="flex flex-col items-center justify-center h-full px-3 py-3">
+      <div className="flex flex-col items-center justify-center px-3 pt-32 pb-3">
         <h1 className="mb-4 text-3xl font-bold">{t("Skillulator")}</h1>
         <div className="grid w-full grid-cols-2 gap-2 mb-4 lg:grid-cols-4 lg:w-max">
           {JOBS.map((job) => (
             <Link
               aria-label={`Go to the ${job.name} skill tree`}
-              to={`/c/${job.name}`}
+              to={`/${i18n.language}/c/${job.name}`}
               key={job.name}
               className="flex flex-col items-center justify-center px-1 py-2 duration-150 bg-white border border-gray-300 rounded-md hover:bg-gray-100 lg:px-5"
             >

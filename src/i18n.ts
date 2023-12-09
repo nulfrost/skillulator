@@ -11,6 +11,10 @@ i18n
   .init({
     fallbackLng: "en",
     debug: true,
+    detection: {
+      convertDetectedLanguage: (lang: string) =>
+        lang.split("-").at(0) as string,
+    },
     interpolation: {
       escapeValue: false,
     },

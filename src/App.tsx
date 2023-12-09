@@ -5,6 +5,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { useTreeStore } from "./zustand/treeStore";
 import { getJobByName, encodeTree, decodeTree } from "./utils/index";
 import Skill from "./components/Skill";
+import { useTranslation } from "react-i18next";
 
 function App() {
   const jobTree = useTreeStore((state) => state.jobTree);
@@ -79,6 +80,8 @@ function App() {
     setSkillPoints(jobId!, +characterLevel!);
   }, []);
 
+  const { i18n } = useTranslation();
+
   return (
     <Suspense>
       <div className="p-2 mx-auto lg:p-5 2xl:max-w-[1920px]">
@@ -86,7 +89,7 @@ function App() {
           <div className="flex flex-col-reverse">
             <h1 className="text-2xl font-bold capitalize">{params.class}</h1>
             <Link
-              to="/"
+              to={`/${i18n.language}`}
               className="mb-2 text-indigo-600 md:mb-4 hover:underline"
             >
               {" "}
