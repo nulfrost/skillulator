@@ -1,5 +1,4 @@
 import { ChangeEvent } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const languages = [
@@ -18,36 +17,17 @@ const languages = [
 
 export function Navbar() {
   const { i18n } = useTranslation();
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const preferredLanguage = i18n.language;
 
   const handleLanguageChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    i18n.changeLanguage(event.target.value);
-    const className = window.location.pathname.split("/").at(-1);
-    const isLandingPage = window.location.pathname.split("/").length === 2;
-    if (isLandingPage) {
-      navigate(`/${event.target.value}`);
-      return;
-    }
-    if (className && !isLandingPage) {
-      navigate(`/${event.target.value}/c/${className}`);
-    }
+    const lang = event.target.value;
+    i18n.changeLanguage(lang);
   };
 
-  console.log(location);
-
   return (
-    <header className="py-4 bg-white border-b border-gray-300 shadow-sm">
-      <nav className="flex items-baseline justify-between max-w-5xl mx-auto">
-        <Link
-          to={`/${preferredLanguage}`}
-          className="font-semibold"
-          aria-label="Go to class selection"
-        >
-          Skillulator
-        </Link>
+    <header className="py-4 2xl:max-w-[1920px]">
+      <nav className="flex px-5">
         <label htmlFor="language" className="sr-only">
           Select a language
         </label>
@@ -56,7 +36,7 @@ export function Navbar() {
           defaultValue={preferredLanguage}
           onChange={handleLanguageChange}
           id="language"
-          className="border border-gray-300 rounded-md px-2 py-1.5 shadow-sm"
+          className="rounded-md border border-gray-300 px-2 py-1.5 shadow-sm ml-auto"
         >
           {languages.map((lang, index) => (
             <option value={lang} key={JSON.stringify({ lang, index })}>

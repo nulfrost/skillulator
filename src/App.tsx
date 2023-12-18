@@ -1,11 +1,13 @@
 import clsx from "clsx";
 import lzstring from "lz-string";
-import { ChangeEvent, useCallback, useEffect, useState, Suspense } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
-import { useTreeStore } from "./zustand/treeStore";
-import { getJobByName, encodeTree, decodeTree } from "./utils/index";
-import Skill from "./components/Skill";
+import { ChangeEvent, Suspense, useCallback, useEffect, useState } from "react";
+import Helmet from "react-helmet";
 import { useTranslation } from "react-i18next";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
+import Skill from "./components/Skill";
+import { decodeTree, encodeTree, getJobByName } from "./utils/index";
+import { useTreeStore } from "./zustand/treeStore";
+import { t } from "i18next";
 
 function App() {
   const jobTree = useTreeStore((state) => state.jobTree);
@@ -16,7 +18,7 @@ function App() {
   const skillPoints = useTreeStore((state) => state.skillPoints);
   const resetSkillTree = useTreeStore((state) => state.resetSkillTree);
 
-  let params = useParams() as { class: string; lang: string };
+  let params = useParams() as { class: string };
   const navigate = useNavigate();
   const skills = getJobByName(
     params.class!,
@@ -39,9 +41,7 @@ function App() {
   const copyToClipboard = useCallback(async () => {
     let treeCode = `${window.location.origin}/c/${params.class}`;
     if (jobId) {
-      console.log(skills);
       const treeMap = encodeTree(skills!, level);
-      console.log(treeMap, skills);
       const encondedTree = lzstring.compressToEncodedURIComponent(treeMap!);
       treeCode += `?tree=${encondedTree}`;
     }
@@ -59,7 +59,6 @@ function App() {
   }, [params.class, copied, jobId, level, skills]);
 
   useEffect(() => {
-    document.title = `Skillulator | ${params.class} skill tree`;
     const code = new URLSearchParams(window.location.search).get("tree") ?? "";
     if (!code) {
       setSkillPoints(jobId!, level);
@@ -81,93 +80,118 @@ function App() {
   }, []);
 
   const { i18n } = useTranslation();
+  const location = useLocation();
+
+  const pageTitle = `Skillulator | ${params.class
+    .at(0)
+    ?.toUpperCase()}${params.class.slice(1, params.class.length)}`;
+
+  const pageURL = `https://skillulator.lol${location.pathname}`;
 
   return (
-    <Suspense>
-      <div className="p-2 mx-auto lg:p-5 2xl:max-w-[1920px]">
-        <div className="flex flex-col justify-between mb-2 md:flex-row">
-          <div className="flex flex-col-reverse">
-            <h1 className="text-2xl font-bold capitalize">{params.class}</h1>
-            <Link
-              to={`/${i18n.language}`}
-              className="mb-2 text-indigo-600 md:mb-4 hover:underline"
-            >
-              {" "}
-              &larr; Back to class selection
-            </Link>
-          </div>
-          <div className="flex flex-col gap-2 md:flex-row">
-            <div className="flex justify-between gap-2">
-              <div className="self-end h-min">
-                <p>Available skill points</p>
-                <span className="font-bold">{skillPoints}</span>
-              </div>
-              <div className="flex flex-col self-end h-min">
-                <label htmlFor="characterLevel" className="text-sm">
-                  Character Level
-                </label>
-                <input
-                  type="number"
-                  className="px-4 py-1.5 border border-gray-300 rounded-md"
-                  inputMode="numeric"
-                  pattern="[0-9]*"
-                  value={level}
-                  onChange={handleLevelChange}
-                  min={15}
-                  max={160}
-                />
-              </div>
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="Skillulator, optimize and share your FlyFF skill builds"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={pageTitle} />
+        <meta
+          property="og:description"
+          content="Skillulator, optimize and share your FlyFF skill builds"
+        />
+        <meta property="og:url" content={pageURL} />
+        <title>{pageTitle}</title>
+        <link rel="canonical" href={pageURL} />
+      </Helmet>
+      <Suspense>
+        <div className="mx-auto p-2 lg:p-5 2xl:max-w-[1920px]">
+          <div className="flex flex-col justify-between mb-2 md:flex-row">
+            <div className="flex flex-col-reverse">
+              <h1 className="text-2xl font-bold capitalize">{params.class}</h1>
+              <Link
+                to="/"
+                className="mb-2 text-indigo-600 hover:underline md:mb-4"
+              >
+                {" "}
+                &larr; {t("classSelectionLink")}
+              </Link>
             </div>
-            <button
-              type="button"
-              disabled={copied}
-              onClick={copyToClipboard}
-              className={clsx(
-                "bg-indigo-500 text-white font-semibold px-4 py-1.5 rounded-md hover:bg-indigo-600 duration-150 h-min self-end w-full md:w-max",
-                copied ? "disabled:bg-green-500" : undefined
-              )}
-            >
-              {copied ? "Copied code to clipboard!" : "Copy skill tree"}
-            </button>
-            <button
-              className="px-4 py-1.5 bg-red-100 text-red-900 rounded-md border border-red-300 hover:bg-red-200 duration-150 h-min self-end w-full md:w-max"
-              onClick={() => {
-                resetSkillTree(jobId!);
-                setLevel(15);
-              }}
-            >
-              Reset skill tree
-            </button>
+            <div className="flex flex-col gap-2 md:flex-row">
+              <div className="flex justify-between gap-2">
+                <div className="self-end h-min">
+                  <p>{t("availSkillPoints")}</p>
+                  <span className="font-bold">{skillPoints}</span>
+                </div>
+                <div className="flex flex-col self-end h-min">
+                  <label htmlFor="characterLevel" className="text-sm">
+                    {t("charLevel")}
+                  </label>
+                  <input
+                    type="number"
+                    className="rounded-md border border-gray-300 px-4 py-1.5"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    value={level}
+                    onChange={handleLevelChange}
+                    min={15}
+                    max={160}
+                  />
+                </div>
+              </div>
+              <button
+                type="button"
+                disabled={copied}
+                onClick={copyToClipboard}
+                className={clsx(
+                  "h-min w-full self-end rounded-md bg-indigo-500 px-4 py-1.5 font-semibold text-white duration-150 hover:bg-indigo-600 md:w-max",
+                  copied ? "disabled:bg-green-500" : undefined
+                )}
+              >
+                {copied ? t("copiedText") : t("copyText")}
+              </button>
+              <button
+                className="h-min w-full self-end rounded-md border border-red-300 bg-red-100 px-4 py-1.5 text-red-900 duration-150 hover:bg-red-200 md:w-max"
+                onClick={() => {
+                  resetSkillTree(jobId!);
+                  setLevel(15);
+                }}
+              >
+                {t("resetText")}
+              </button>
+            </div>
+          </div>
+          <div
+            className={clsx(
+              "w-full space-y-1 md:grid md:grid-cols-5 md:gap-1 md:space-y-0",
+              params.class
+            )}
+          >
+            {skills
+              ?.toSorted((a, b) => a.level - b.level)
+              ?.map((skill) => {
+                const hasMinLevelRequirements = skill.requirements.every(
+                  (req: any) => req.hasMinLevel === true
+                );
+                const isMaxed = skill.skillLevel === skill.levels.length;
+                return (
+                  <Skill
+                    lang={i18n.language}
+                    key={skill.id}
+                    hasMinLevelRequirements={hasMinLevelRequirements}
+                    isMaxed={isMaxed}
+                    skill={skill}
+                    skillId={skill.id}
+                    jobId={jobId}
+                  />
+                );
+              })}
           </div>
         </div>
-        <div
-          className={clsx(
-            "md:gap-1 md:grid md:grid-cols-5 w-full space-y-1 md:space-y-0",
-            params.class
-          )}
-        >
-          {skills
-            ?.toSorted((a, b) => a.level - b.level)
-            ?.map((skill) => {
-              const hasMinLevelRequirements = skill.requirements.every(
-                (req: any) => req.hasMinLevel === true
-              );
-              const isMaxed = skill.skillLevel === skill.levels.length;
-              return (
-                <Skill
-                  lang={params.lang}
-                  key={skill.id}
-                  hasMinLevelRequirements={hasMinLevelRequirements}
-                  isMaxed={isMaxed}
-                  skill={skill}
-                  skillId={skill.id}
-                  jobId={jobId}
-                />
-              );
-            })}
-        </div>
-      </div>
-    </Suspense>
+      </Suspense>
+    </>
   );
 }
 

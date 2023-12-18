@@ -1,15 +1,5 @@
 {
-  "mainTitle": "Skillulator",
-  "classes": {
-    "blade": "blade",
-    "knight": "knight",
-    "elementor": "elementor",
-    "psykeeper": "psykeeper",
-    "billposter": "billposter",
-    "ringmaster": "ringmaster",
-    "ranger": "ranger",
-    "jester": "jester"
-  },
+  "pageDescription": "Skillulator, optimize and share your FlyFF skill builds",
   "secondaryTitle": "How to use",
   "appInstructions": {
     "inst1": "Use the left and right click to level up or level down a skill",
@@ -19,6 +9,7 @@
   },
   "classSelectionLink": "Back to class selection",
   "copyText": "Copy skill tree",
+  "copiedText": "Copied code to clipboard!",
   "resetText": "Reset skill tree",
   "availSkillPoints": "Available skill points",
   "charLevel": "Character Level",
