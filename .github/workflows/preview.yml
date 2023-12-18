@@ -16,7 +16,7 @@ jobs:
       - name: Generate translations
         uses: lyqht/deepl-translate-github-action@v2.1.1
         with:
-          target_languages: pt-PT,pt-BR,zh,fr,ja,ko,pl,ru,sw,tw,de,fi,id,it,nl,pl,es
+          target_languages: pt-PT,pt-BR,zh,fr,ja,ko,pl,ru,de,fi,id,it,nl,pl,es
           input_file_path: public/locales/en/translation.json
           output_file_name_pattern: public/locales/{language}/translation.json
           deepl_api_key: ${{ secrets.DEEPL_API_KEY }}
