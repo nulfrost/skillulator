@@ -1,5 +1,7 @@
+import { getLanguageForSkill } from "../utils";
 import { useTreeStore, State } from "../zustand/treeStore";
 import clsx from "clsx";
+import { languages } from "../utils/index";
 
 interface SkillProps {
   skill: State["jobTree"][0]["skills"][0];
@@ -13,6 +15,9 @@ interface SkillProps {
 export default function Skill(props: SkillProps) {
   const { decreaseSkillPoint, increaseSkillToMax, increaseSkillPoint } =
     useTreeStore();
+
+  // this is so bad
+  const translatedSkillLocale = getLanguageForSkill(languages, props.lang);
 
   return (
     <div
@@ -64,7 +69,7 @@ export default function Skill(props: SkillProps) {
             props.hasMinLevelRequirements ? "text-blue-500" : "text-gray-300"
           )}
         >
-          {props.skill.name[props.lang]}
+          {props.skill.name[translatedSkillLocale!]}
         </span>
       </button>
       <div>

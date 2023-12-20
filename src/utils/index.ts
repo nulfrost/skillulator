@@ -1,6 +1,6 @@
 import { State } from "../zustand/treeStore";
 
-export function getJobById(jobId: number, jobs: State['jobTree']) {
+export function getJobById(jobId: number, jobs: State["jobTree"]) {
   return jobs.find((job) => job.id === jobId);
 }
 
@@ -151,4 +151,68 @@ export function getJobTotalSkillPoints(
   }
 
   return getSkillPointsForLevel(characterLevel) + jobMap[jobId].firstJobSP;
+}
+
+export const languages = [
+  {
+    label: "en",
+    value: "en",
+  },
+  {
+    label: "pt-BR",
+    value: "br",
+    locale: "pt-BR",
+  },
+  {
+    label: "zh",
+    value: "cns",
+    locale: "zh-CN",
+  },
+  {
+    label: "ja",
+    value: "jp",
+  },
+  {
+    label: "ko",
+    value: "kr",
+  },
+  {
+    label: "es",
+    value: "sp",
+  },
+  {
+    label: "ru",
+    value: "ru",
+  },
+  {
+    label: "de",
+    value: "de",
+  },
+  {
+    label: "fi",
+    value: "fi",
+  },
+  {
+    label: "id",
+    value: "id",
+  },
+  {
+    label: "it",
+    value: "it",
+  },
+  {
+    label: "nl",
+    value: "nl",
+  },
+  {
+    label: "pl",
+    value: "pl",
+  },
+];
+
+export function getLanguageForSkill(
+  langs: typeof languages,
+  appLanguage: string
+) {
+  return langs.find((lang) => lang.label === appLanguage)?.value;
 }

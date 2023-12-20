@@ -1,19 +1,6 @@
 import { ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
-
-const languages = [
-  "en",
-  "ar",
-  "br",
-  "cns",
-  "fr",
-  "jp",
-  "kr",
-  "pl",
-  "ru",
-  "sw",
-  "tw",
-];
+import { languages } from "../utils";
 
 export function Navbar() {
   const { i18n } = useTranslation();
@@ -36,11 +23,11 @@ export function Navbar() {
           defaultValue={preferredLanguage}
           onChange={handleLanguageChange}
           id="language"
-          className="rounded-md border border-gray-300 px-2 py-1.5 shadow-sm ml-auto"
+          className="rounded-md border border-gray-300 px-2 py-1.5 shadow-sm ml-auto w-[100px]"
         >
           {languages.map((lang, index) => (
-            <option value={lang} key={JSON.stringify({ lang, index })}>
-              {lang.toUpperCase()}
+            <option value={lang.label} key={JSON.stringify({ lang, index })}>
+              {lang.label.toUpperCase()}
             </option>
           ))}
         </select>
