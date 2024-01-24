@@ -13,7 +13,7 @@ export function Navbar() {
   };
 
   return (
-    <header className="py-4 2xl:max-w-[1920px] mx-auto">
+    <header className="py-4 2xl:max-w-[1920px]">
       <nav className="flex px-5">
         <label htmlFor="language" className="sr-only">
           Select a language

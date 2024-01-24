@@ -20,5 +20,6 @@
 
   #root {
     height: 100%;
+    @apply flex flex-col;
   }
 }
