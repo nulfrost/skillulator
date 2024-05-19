@@ -18,7 +18,7 @@ function App() {
   const skillPoints = useTreeStore((state) => state.skillPoints);
   const resetSkillTree = useTreeStore((state) => state.resetSkillTree);
 
-  let params = useParams() as { class: string };
+  let params = useParams() as { class: string; lang: string };
   const navigate = useNavigate();
   const skills = getJobByName(
     params.class!,

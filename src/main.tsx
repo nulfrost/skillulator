@@ -14,6 +14,7 @@ import App from "./App";
 import { Navbar } from "./components/Navbar";
 import "./i18n";
 import "./index.css";
+import { Footer } from "./components/Footer";
 
 const JOBS = [
   {
@@ -57,6 +58,7 @@ const router = createBrowserRouter([
       <>
         <Navbar />
         <LandingPage />
+        <Footer />
       </>
     ),
     errorElement: <ErrorBoundary />,
@@ -67,6 +69,7 @@ const router = createBrowserRouter([
       <>
         <Navbar />
         <App />
+        <Footer />
       </>
     ),
   },
@@ -96,7 +99,7 @@ function LandingPage() {
         <link rel="canonical" href="https://skillulator.lol" />
       </Helmet>
       <Suspense fallback="loading...">
-        <div className="flex flex-col items-center justify-center px-3 pt-32 pb-3">
+        <main className="flex flex-col items-center justify-center px-3 pt-32 pb-3">
           <h1 className="mb-4 text-3xl font-bold">Skillulator</h1>
           <div className="grid w-full grid-cols-2 gap-2 mb-4 lg:w-max lg:grid-cols-4">
             {JOBS.map((job) => (
@@ -121,7 +124,7 @@ function LandingPage() {
             <li>{t("appInstructions.inst3")}</li>
             <li>{t("appInstructions.inst4")}</li>
           </ul>
-        </div>
+        </main>
       </Suspense>
     </>
   );
