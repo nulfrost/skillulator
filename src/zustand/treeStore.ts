@@ -7,28 +7,6 @@ import {
   classSkillPoints,
 } from "../utils";
 import { produce } from "immer";
-// import { immer } from "zustand/middleware/immer";
-// import { persist, StateStorage } from "zustand/middleware";
-
-// function getUrlSearch() {
-//   return window.location.search.slice(1);
-// }
-
-// const persistentStorage: StateStorage = {
-//   getItem: (key): string => {
-//     const searchParams = new URLSearchParams(getUrlSearch());
-//     const storedValue = searchParams.get(key) as string;
-//     return JSON.parse(storedValue);
-//   },
-//   setItem: (key, newValue): void => {
-//     const searchParams = new URLSearchParams(getUrlSearch());
-//     searchParams.set(key, JSON.stringify(newValue));
-//     window.history.replaceState(null, "", `?${searchParams.toString()}`);
-//   },
-// };
-
-// for some reason when building, it's reading the json file instead of the new tree in memory
-// need to figure out a way to copy
 
 export type State = {
   jobTree: typeof jobTree;
@@ -44,7 +22,7 @@ type Actions = {
 
   createPreloadedSkillTree: (
     jobId: number,
-    skills: Array<Record<string, unknown>>
+    skills: Array<Record<string, unknown>>,
   ) => void;
   resetSkillTree: (jobId: number) => void;
 };
@@ -66,7 +44,7 @@ export const useTreeStore = create<State & Actions>()((set, get) => ({
         let skillPoints = getJobTotalSkillPoints(
           state.classSkillPoints,
           jobId,
-          characterLevel
+          characterLevel,
         );
 
         let skillPointsToSubtract = 0;
@@ -77,12 +55,8 @@ export const useTreeStore = create<State & Actions>()((set, get) => ({
         let remainingSkillPoints = skillPoints - skillPointsToSubtract;
 
         state.skillPoints = remainingSkillPoints;
-        // return {
-        //   ...state,
-        //   skillPoints: state.skillPoints,
-        // };
         return state;
-      })
+      }),
     ),
   increaseSkillPoint: (jobId: number, skillId: number) =>
     set(
@@ -101,7 +75,7 @@ export const useTreeStore = create<State & Actions>()((set, get) => ({
         job?.skills.forEach((s) => {
           const foundSkill = s.requirements.find((sz) => sz.skill === skillId);
           const skillIndex = s.requirements.findIndex(
-            (sx) => sx.skill === skillId
+            (sx) => sx.skill === skillId,
           );
           if (
             typeof foundSkill !== "undefined" &&
@@ -111,7 +85,7 @@ export const useTreeStore = create<State & Actions>()((set, get) => ({
           }
         });
         return state;
-      })
+      }),
     ),
   decreaseSkillPoint: (jobId: number, skillId: number) =>
     set(
@@ -128,7 +102,7 @@ export const useTreeStore = create<State & Actions>()((set, get) => ({
         job?.skills.forEach((s) => {
           const foundSkill = s.requirements.find((sz) => sz.skill === skillId);
           const skillIndex = s.requirements.findIndex(
-            (sx) => sx.skill === skillId
+            (sx) => sx.skill === skillId,
           );
           if (
             typeof foundSkill !== "undefined" &&
@@ -137,11 +111,11 @@ export const useTreeStore = create<State & Actions>()((set, get) => ({
             s.requirements[skillIndex].hasMinLevel = false;
           }
         });
-      })
+      }),
     ),
   createPreloadedSkillTree: (
     jobId: number,
-    predefinedSkills: Array<Record<string, unknown>>
+    predefinedSkills: Array<Record<string, unknown>>,
   ) =>
     set(
       produce((state: State) => {
@@ -160,10 +134,10 @@ export const useTreeStore = create<State & Actions>()((set, get) => ({
 
           job?.skills.forEach((s) => {
             const foundSkill = s.requirements.find(
-              (sz) => sz.skill === originalTreeSkill.id
+              (sz) => sz.skill === originalTreeSkill.id,
             );
             const skillIndex = s.requirements.findIndex(
-              (sx) => sx.skill === originalTreeSkill.id
+              (sx) => sx.skill === originalTreeSkill.id,
             );
             if (
               typeof foundSkill !== "undefined" &&
@@ -173,7 +147,7 @@ export const useTreeStore = create<State & Actions>()((set, get) => ({
             }
           });
         });
-      })
+      }),
     ),
   increaseSkillToMax: (skillId: number, jobId: number) =>
     set(
@@ -193,7 +167,7 @@ export const useTreeStore = create<State & Actions>()((set, get) => ({
         job?.skills.forEach((s) => {
           const foundSkill = s.requirements.find((sz) => sz.skill === skillId);
           const skillIndex = s.requirements.findIndex(
-            (sx) => sx.skill === skillId
+            (sx) => sx.skill === skillId,
           );
           if (
             typeof foundSkill !== "undefined" &&
@@ -203,14 +177,14 @@ export const useTreeStore = create<State & Actions>()((set, get) => ({
             s.requirements[skillIndex].hasMinLevel = true;
           }
         });
-      })
+      }),
     ),
   resetSkillTree: (jobId: number) =>
     set((state: State) => {
       let skillPoints = getJobTotalSkillPoints(
         state.classSkillPoints,
         jobId,
-        15
+        15,
       );
 
       return {

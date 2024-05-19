@@ -6,20 +6,20 @@ export function getJobById(jobId: number, jobs: State["jobTree"]) {
 
 export function getSkillById(
   skillId: number,
-  skills: State["jobTree"][number]["skills"]
+  skills: State["jobTree"][number]["skills"],
 ) {
   return skills.find((skill) => skill.id === skillId);
 }
 
 export function getJobByName(jobName: string, jobs: State["jobTree"]) {
   return jobs.find(
-    (job) => job.name.en.toLowerCase() === jobName.toLowerCase()
+    (job) => job.name.en.toLowerCase() === jobName.toLowerCase(),
   );
 }
 
 export function encodeTree(
   skills: State["jobTree"][number]["skills"],
-  characterLevel: number
+  characterLevel: number,
 ) {
   return (
     skills?.map((skill) => `${skill.id}:${skill.skillLevel}`).join(",") +
@@ -140,7 +140,7 @@ export const classSkillPoints = {
 export function getJobTotalSkillPoints(
   jobMap: typeof classSkillPoints,
   jobId: number,
-  characterLevel: number
+  characterLevel: number,
 ) {
   if (characterLevel >= 60) {
     return (
@@ -157,62 +157,75 @@ export const languages = [
   {
     label: "en",
     value: "en",
+    language: "English",
   },
   {
     label: "pt-BR",
     value: "br",
     locale: "pt-BR",
+    language: "Português",
   },
   {
     label: "zh",
     value: "cns",
     locale: "zh-CN",
+    language: "Chinese",
   },
   {
     label: "ja",
     value: "jp",
+    language: "Japanese",
   },
   {
     label: "ko",
     value: "kr",
+    language: "Korean",
   },
   {
     label: "es",
     value: "sp",
+    language: "Spanish",
   },
   {
     label: "ru",
     value: "ru",
+    language: "Russian",
   },
   {
     label: "de",
     value: "de",
+    language: "German",
   },
   {
     label: "fi",
     value: "fi",
+    language: "Finnish",
   },
   {
     label: "id",
     value: "id",
+    language: "Indonesian",
   },
   {
     label: "it",
     value: "it",
+    language: "Italian",
   },
   {
     label: "nl",
     value: "nl",
+    language: "Dutch",
   },
   {
     label: "pl",
     value: "pl",
+    language: "Polish",
   },
 ];
 
 export function getLanguageForSkill(
   langs: typeof languages,
-  appLanguage: string
+  appLanguage: string,
 ) {
   return langs.find((lang) => lang.label === appLanguage)?.value;
 }

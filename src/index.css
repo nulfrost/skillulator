@@ -12,14 +12,18 @@
 @tailwind utilities;
 
 @layer base {
-  html,
-  body {
-    @apply bg-gray-50;
-    height: 100%;
-  }
+    html,
+    body {
+        @apply bg-gray-50;
+        height: 100%;
+    }
 
-  #root {
-    height: 100%;
-    @apply flex flex-col;
-  }
+    .a11y-focus {
+        @apply focus:border-transparent focus:outline-transparent focus:ring-4 focus:ring-offset-2 focus:ring-indigo-500;
+    }
+
+    #root {
+        height: 100%;
+        @apply flex flex-col;
+    }
 }

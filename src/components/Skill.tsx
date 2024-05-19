@@ -9,7 +9,7 @@ interface SkillProps {
   skillId: number;
   hasMinLevelRequirements: boolean;
   isMaxed: boolean;
-  lang: string
+  lang: string;
 }
 
 export default function Skill(props: SkillProps) {
@@ -51,7 +51,7 @@ export default function Skill(props: SkillProps) {
         <span
           className={clsx(
             "font-bold block uppercase",
-            props.hasMinLevelRequirements ? "text-gray-900" : "text-gray-300"
+            props.hasMinLevelRequirements ? "text-gray-900" : "text-gray-300",
           )}
         >
           {props.isMaxed ? "max" : `${props.skill.skillLevel}`}
@@ -59,14 +59,14 @@ export default function Skill(props: SkillProps) {
         <img
           className={clsx(
             "h-12 w-12",
-            props.hasMinLevelRequirements ? "grayscale-0" : "grayscale"
+            props.hasMinLevelRequirements ? "grayscale-0" : "grayscale",
           )}
           src={`https://api.flyff.com/image/skill/colored/${props.skill.icon}`}
         />
         <span
           className={clsx(
             "inline-block font-bold",
-            props.hasMinLevelRequirements ? "text-blue-500" : "text-gray-300"
+            props.hasMinLevelRequirements ? "text-blue-500" : "text-gray-300",
           )}
         >
           {props.skill.name[translatedSkillLocale!]}
@@ -84,8 +84,8 @@ export default function Skill(props: SkillProps) {
       <div>
         <button
           className={clsx(
-            "absolute px-4 py-1 text-xs font-bold text-indigo-900 uppercase bg-indigo-100 border border-indigo-200 rounded-sm top-2 left-2 disabled:cursor-not-allowed md:hidden",
-            props.skill.skillLevel === 0 ? "grayscale" : "grayscale-0"
+            "absolute px-4 py-1 text-xs font-bold text-indigo-900 uppercase bg-indigo-100 border border-indigo-200 rounded-sm top-2 left-2 disabled:cursor-not-allowed md:hidden a11y-focus",
+            props.skill.skillLevel === 0 ? "grayscale" : "grayscale-0",
           )}
           disabled={props.skill.skillLevel === 0}
           onClick={(event) => {
@@ -100,10 +100,10 @@ export default function Skill(props: SkillProps) {
         <button
           disabled={!props.hasMinLevelRequirements || props.isMaxed}
           className={clsx(
-            "absolute px-4 py-1 text-xs font-bold text-indigo-900 uppercase bg-indigo-100 border border-indigo-200 rounded-sm right-2 top-2 disabled:cursor-not-allowed",
+            "absolute px-4 py-1 text-xs font-bold text-indigo-900 uppercase bg-indigo-100 border border-indigo-200 rounded-sm right-2 top-2 disabled:cursor-not-allowed a11y-focus",
             props.hasMinLevelRequirements && !props.isMaxed
               ? "grayscale-0"
-              : "grayscale"
+              : "grayscale",
           )}
           onClick={() => increaseSkillToMax(props.skillId, props.jobId!)}
         >
@@ -127,7 +127,7 @@ function Requirements(props: RequirementsProps) {
     <span
       className={clsx(
         "block text-sm text-center",
-        props.hasMinLevelRequirements ? "text-green-500" : "text-red-500"
+        props.hasMinLevelRequirements ? "text-green-500" : "text-red-500",
       )}
     >
       {props.skill.name} level {props.skill.level} is required

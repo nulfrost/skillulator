@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { languages } from "../utils";
 
@@ -13,7 +13,7 @@ export function Navbar() {
   };
 
   return (
-    <header className="py-4 2xl:max-w-[1920px]">
+    <header className="py-4">
       <nav className="flex px-5">
         <label htmlFor="language" className="sr-only">
           Select a language
@@ -23,7 +23,7 @@ export function Navbar() {
           defaultValue={preferredLanguage}
           onChange={handleLanguageChange}
           id="language"
-          className="rounded-md border border-gray-300 px-2 py-1.5 shadow-sm ml-auto w-[100px]"
+          className="rounded-md border border-gray-300 px-2 py-1.5 shadow-sm ml-auto w-[100px] absolute right-20 a11y-focus"
         >
           {languages.map((lang, index) => (
             <option value={lang.label} key={JSON.stringify({ lang, index })}>

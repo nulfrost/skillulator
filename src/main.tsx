@@ -1,7 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import Helmet from "react-helmet";
 import { useTranslation } from "react-i18next";
 import {
   Link,
@@ -79,25 +78,6 @@ function LandingPage() {
   const { t } = useTranslation();
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <meta
-          name="description"
-          content="Skillulator, optimize and share your FlyFF skill builds"
-        />
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:title"
-          content="Skillulator | Optimize your FlyFF character"
-        />
-        <meta
-          property="og:description"
-          content="Skillulator, optimize and share your FlyFF skill builds"
-        />
-        <meta property="og:url" content="https://skillulator.lol" />
-        <title>Skillulator | Optimize your FlyFF character</title>
-        <link rel="canonical" href="https://skillulator.lol" />
-      </Helmet>
       <Suspense fallback="loading...">
         <main className="flex flex-col items-center justify-center px-3 pt-32 pb-3">
           <h1 className="mb-4 text-3xl font-bold">Skillulator</h1>
@@ -107,7 +87,7 @@ function LandingPage() {
                 aria-label={`Go to the ${job.name} skill tree`}
                 to={`/c/${job.name}`}
                 key={job.name}
-                className="flex flex-col items-center justify-center px-1 py-2 duration-150 bg-white border border-gray-300 rounded-md hover:bg-gray-100 lg:px-5"
+                className="flex flex-col items-center justify-center px-1 py-2 duration-150 bg-white border border-gray-300 rounded-md hover:bg-gray-100 lg:px-5 a11y-focus"
               >
                 <img
                   src={`https://api.flyff.com/image/class/target/${job.image}`}
@@ -144,5 +124,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
     <Analytics />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
