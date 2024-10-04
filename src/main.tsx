@@ -50,11 +50,11 @@ const router = createBrowserRouter(
 function LandingPage() {
   const { t } = useTranslation();
 
-  const WEBSITE_URL = import.meta.env.VERCEL_URL
-    ? `https://${import.meta.env.VERCEL_URL}`
-    : import.meta.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${import.meta.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : "http://localhost:5173";
+  const WEBSITE_URL = import.meta.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://skillulator.lol`
+      ? import.meta.env.VERCEL_URL
+      : `https://skillulator.lol`
+    : "http://localhost:5173";
 
   return (
     <>
