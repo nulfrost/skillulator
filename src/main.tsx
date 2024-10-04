@@ -8,74 +8,54 @@ import {
   createBrowserRouter,
   isRouteErrorResponse,
   useRouteError,
-} from "react-router-dom";
+} from "react-router";
 import App from "./App";
 import { Navbar } from "./components/Navbar";
 import "./i18n";
 import "./index.css";
 import { Footer } from "./components/Footer";
+import { JOBS } from "./contstants";
 
-const JOBS = [
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: (
+        <>
+          <Navbar />
+          <LandingPage />
+          <Footer />
+        </>
+      ),
+      errorElement: <ErrorBoundary />,
+    },
+    {
+      path: "/c/:class",
+      element: (
+        <>
+          <Navbar />
+          <App />
+          <Footer />
+        </>
+      ),
+    },
+  ],
   {
-    name: "blade",
-    image: "blade.png",
+    future: {
+      v7_relativeSplatPath: true,
+    },
   },
-  {
-    name: "knight",
-    image: "knight.png",
-  },
-  {
-    name: "elementor",
-    image: "elementor.png",
-  },
-  {
-    name: "psykeeper",
-    image: "psychikeeper.png",
-  },
-  {
-    name: "billposter",
-    image: "billposter.png",
-  },
-  {
-    name: "ringmaster",
-    image: "ringmaster.png",
-  },
-  {
-    name: "ranger",
-    image: "ranger.png",
-  },
-  {
-    name: "jester",
-    image: "jester.png",
-  },
-];
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <>
-        <Navbar />
-        <LandingPage />
-        <Footer />
-      </>
-    ),
-    errorElement: <ErrorBoundary />,
-  },
-  {
-    path: "/c/:class",
-    element: (
-      <>
-        <Navbar />
-        <App />
-        <Footer />
-      </>
-    ),
-  },
-]);
+);
 
 function LandingPage() {
   const { t } = useTranslation();
+
+  const WEBSITE_URL = import.meta.env.VERCEL_URL
+    ? `https://${import.meta.env.VERCEL_URL}`
+    : import.meta.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${import.meta.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : "http://localhost:5173";
+
   return (
     <>
       <Suspense fallback="loading...">
@@ -90,7 +70,7 @@ function LandingPage() {
                 className="flex flex-col items-center justify-center px-1 py-2 duration-150 bg-white border border-gray-300 rounded-md hover:bg-gray-100 lg:px-5 a11y-focus"
               >
                 <img
-                  src={`https://api.flyff.com/image/class/target/${job.image}`}
+                  src={`${WEBSITE_URL}/icons/classes/${job.image}`}
                   className="w-10 h-10 md:h-12 md:w-12"
                 />
                 <span className="capitalize">{job.name}</span>
