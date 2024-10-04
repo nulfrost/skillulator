@@ -56,6 +56,11 @@ function LandingPage() {
       ? `https://${import.meta.env.VERCEL_PROJECT_PRODUCTION_URL}`
       : "http://localhost:5173";
 
+  console.log(
+    import.meta.env.VERCEL_URL,
+    import.meta.env.VERCEL_PROJECT_PRODUCTION_URL,
+  );
+
   return (
     <>
       <Suspense fallback="loading...">
