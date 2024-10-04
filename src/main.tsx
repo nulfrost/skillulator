@@ -50,12 +50,6 @@ const router = createBrowserRouter(
 function LandingPage() {
   const { t } = useTranslation();
 
-  const WEBSITE_URL = import.meta.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://skillulator.lol`
-      ? import.meta.env.VERCEL_URL
-      : `https://skillulator.lol`
-    : "http://localhost:5173";
-
   return (
     <>
       <Suspense fallback="loading...">
@@ -70,7 +64,7 @@ function LandingPage() {
                 className="flex flex-col items-center justify-center px-1 py-2 duration-150 bg-white border border-gray-300 rounded-md hover:bg-gray-100 lg:px-5 a11y-focus"
               >
                 <img
-                  src={`${WEBSITE_URL}/icons/classes/${job.image}`}
+                  src={`https://skillulator.lol/icons/classes/${job.image}`}
                   className="w-10 h-10 md:h-12 md:w-12"
                 />
                 <span className="capitalize">{job.name}</span>
