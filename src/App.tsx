@@ -2,7 +2,7 @@ import clsx from "clsx";
 import lzstring from "lz-string";
 import { ChangeEvent, Suspense, useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
+import { Link, useNavigate, useParams, useLocation } from "react-router";
 import Skill from "./components/Skill";
 import { decodeTree, encodeTree, getJobByName } from "./utils/index";
 import { useTreeStore } from "./zustand/treeStore";
