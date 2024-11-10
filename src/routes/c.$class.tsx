@@ -1,14 +1,19 @@
+import { createFileRoute } from "@tanstack/react-router";
 import clsx from "clsx";
 import lzstring from "lz-string";
 import { ChangeEvent, Suspense, useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate, useParams, useLocation } from "react-router";
-import Skill from "./components/Skill";
-import { decodeTree, encodeTree, getJobByName } from "./utils/index";
-import { useTreeStore } from "./zustand/treeStore";
+import { Link, useNavigate, useParams } from "@tanstack/react-router";
+import Skill from "../components/Skill";
+import { decodeTree, encodeTree, getJobByName } from "../utils/index";
+import { useTreeStore } from "../zustand/treeStore";
 import { t } from "i18next";
 
-function App() {
+export const Route = createFileRoute("/c/$class")({
+  component: SkillTree,
+});
+
+function SkillTree() {
   const jobTree = useTreeStore((state) => state.jobTree);
   const createPreloadedSkillTree = useTreeStore(
     (state) => state.createPreloadedSkillTree,
@@ -17,7 +22,7 @@ function App() {
   const skillPoints = useTreeStore((state) => state.skillPoints);
   const resetSkillTree = useTreeStore((state) => state.resetSkillTree);
 
-  let params = useParams() as { class: string; lang: string };
+  let params = useParams({ from: "/c/$class" });
   const navigate = useNavigate();
   const skills = getJobByName(
     params.class!,
@@ -67,7 +72,7 @@ function App() {
     const decompressedCode = lzstring.decompressFromEncodedURIComponent(code);
     if (!decompressedCode) {
       alert("Error: Invalid tree code!");
-      navigate(`/c/${params.class}`);
+      navigate({ to: `/c/${params.class}` });
       return;
     }
     const { untangledSkillMap, characterLevel } = decodeTree(decompressedCode);
@@ -170,5 +175,3 @@ function App() {
     </>
   );
 }
-
-export default App;
