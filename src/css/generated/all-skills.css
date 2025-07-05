@@ -1,0 +1,978 @@
+.billposter {
+  grid-template-areas:
+    "Heal Heal Heal MoonBeam MoonBeam"
+    "Patience QuickStep MentalSign TempingHole ."
+    "Resurrection Haste HeapUp Stonehand ."
+    "CircleHealing CatsReflex BeefUp BurstCrack ."
+    "Prevention CannonBall Accuracy PowerFist ."
+    ". Asmodeus PiercingSerpent . ."
+    ". BelialSmashing BaraqijalEsna . ."
+    ". BloodFist BgvurTialbold . ."
+    "Sonichand Sonichand Sonichand Sonichand Sonichand"
+    "Asalraalaikum Asalraalaikum Asalraalaikum Asalraalaikum Asalraalaikum"
+    "SurysTenacity SurysTenacity SurysTenacity SurysTenacity SurysTenacity";
+}
+
+[data-skill="BeefUp"] {
+  grid-area: BeefUp;
+}
+
+[data-skill="CircleHealing"] {
+  grid-area: CircleHealing;
+}
+
+[data-skill="CannonBall"] {
+  grid-area: CannonBall;
+}
+
+[data-skill="MentalSign"] {
+  grid-area: MentalSign;
+}
+
+[data-skill="TempingHole"] {
+  grid-area: TempingHole;
+}
+
+[data-skill="Patience"] {
+  grid-area: Patience;
+}
+
+[data-skill="Stonehand"] {
+  grid-area: Stonehand;
+}
+
+[data-skill="CatsReflex"] {
+  grid-area: CatsReflex;
+}
+
+[data-skill="QuickStep"] {
+  grid-area: QuickStep;
+}
+
+[data-skill="Heal"] {
+  grid-area: Heal;
+}
+
+[data-skill="PowerFist"] {
+  grid-area: PowerFist;
+}
+
+[data-skill="Accuracy"] {
+  grid-area: Accuracy;
+}
+
+[data-skill="HeapUp"] {
+  grid-area: HeapUp;
+}
+
+[data-skill="BurstCrack"] {
+  grid-area: BurstCrack;
+}
+
+[data-skill="MoonBeam"] {
+  grid-area: MoonBeam;
+}
+
+[data-skill="Resurrection"] {
+  grid-area: Resurrection;
+}
+
+[data-skill="Haste"] {
+  grid-area: Haste;
+}
+
+[data-skill="Prevention"] {
+  grid-area: Prevention;
+}
+
+[data-skill="Asmodeus"] {
+  grid-area: Asmodeus;
+}
+
+[data-skill="PiercingSerpent"] {
+  grid-area: PiercingSerpent;
+}
+
+[data-skill="BelialSmashing"] {
+  grid-area: BelialSmashing;
+}
+
+[data-skill="BaraqijalEsna"] {
+  grid-area: BaraqijalEsna;
+}
+
+[data-skill="BgvurTialbold"] {
+  grid-area: BgvurTialbold;
+}
+
+[data-skill="Sonichand"] {
+  grid-area: Sonichand;
+}
+
+[data-skill="Asalraalaikum"] {
+  grid-area: Asalraalaikum;
+}
+
+[data-skill="SurysTenacity"] {
+  grid-area: SurysTenacity;
+}
+
+[data-skill="BloodFist"] {
+  grid-area: BloodFist;
+}
+
+
+.blade {
+  grid-template-areas:
+    "Protection Protection Protection Slash Slash"
+    "Keenwheel BloodyStrike ShieldBash Empowerweapon Empowerweapon"
+    "Blindside ReflexHit Sneaker SmiteAxe BlazingSword"
+    "SpecialHit Guillotine . AxeMastery SwordMastery"
+    ". SilentStrike SpringAttack ArmorPenetrate ."
+    ". BladeDance HawkAttack Berserk ."
+    ". . CrossStrike SonicBlade ."
+    "RendingEntry RendingEntry RendingEntry RendingEntry RendingEntry";
+}
+
+[data-skill="Protection"] {
+  grid-area: Protection;
+}
+
+[data-skill="Slash"] {
+  grid-area: Slash;
+}
+
+[data-skill="Keenwheel"] {
+  grid-area: Keenwheel;
+}
+
+[data-skill="BloodyStrike"] {
+  grid-area: BloodyStrike;
+}
+
+[data-skill="ShieldBash"] {
+  grid-area: ShieldBash;
+}
+
+[data-skill="Empowerweapon"] {
+  grid-area: Empowerweapon;
+}
+
+[data-skill="Blindside"] {
+  grid-area: Blindside;
+}
+
+[data-skill="ReflexHit"] {
+  grid-area: ReflexHit;
+}
+
+[data-skill="Sneaker"] {
+  grid-area: Sneaker;
+}
+
+[data-skill="SmiteAxe"] {
+  grid-area: SmiteAxe;
+}
+
+[data-skill="BlazingSword"] {
+  grid-area: BlazingSword;
+}
+
+[data-skill="SpecialHit"] {
+  grid-area: SpecialHit;
+}
+
+[data-skill="Guillotine"] {
+  grid-area: Guillotine;
+}
+
+[data-skill="AxeMastery"] {
+  grid-area: AxeMastery;
+}
+
+[data-skill="SwordMastery"] {
+  grid-area: SwordMastery;
+}
+
+[data-skill="SilentStrike"] {
+  grid-area: SilentStrike;
+}
+
+[data-skill="SpringAttack"] {
+  grid-area: SpringAttack;
+}
+
+[data-skill="ArmorPenetrate"] {
+  grid-area: ArmorPenetrate;
+}
+
+[data-skill="BladeDance"] {
+  grid-area: BladeDance;
+}
+
+[data-skill="HawkAttack"] {
+  grid-area: HawkAttack;
+}
+
+[data-skill="Berserk"] {
+  grid-area: Berserk;
+}
+
+[data-skill="CrossStrike"] {
+  grid-area: CrossStrike;
+}
+
+[data-skill="SonicBlade"] {
+  grid-area: SonicBlade;
+}
+
+[data-skill="RendingEntry"] {
+  grid-area: RendingEntry;
+}
+
+
+.elementor {
+  grid-template-areas:
+    "MentalStrike MentalStrike MentalStrike Blinkpool Blinkpool"
+    "FlameBall Swordwind IceMissile LightningBall StoneSpike"
+    "FlameGeyser Strongwind Waterball LightningRam Rooting"
+    "FireStrike WindCutter WaterWell LightningShock RockCrash"
+    "Firebird StoneSpear Void LightningStrike Iceshark"
+    "Burningfield Earthquake Windfield ElectricShock PoisonCloud"
+    "MeteoShower Sandstorm LightningStorm LightningStorm Blizzard"
+    "FireMastery EarthMastery WindMastery LightningMastery WaterMastery"
+    "EyeoftheStorm EyeoftheStorm EyeoftheStorm EyeoftheStorm EyeoftheStorm";
+}
+
+[data-skill="RockCrash"] {
+  grid-area: RockCrash;
+}
+
+[data-skill="WindCutter"] {
+  grid-area: WindCutter;
+}
+
+[data-skill="MentalStrike"] {
+  grid-area: MentalStrike;
+}
+
+[data-skill="IceMissile"] {
+  grid-area: IceMissile;
+}
+
+[data-skill="Strongwind"] {
+  grid-area: Strongwind;
+}
+
+[data-skill="Waterball"] {
+  grid-area: Waterball;
+}
+
+[data-skill="LightningBall"] {
+  grid-area: LightningBall;
+}
+
+[data-skill="LightningRam"] {
+  grid-area: LightningRam;
+}
+
+[data-skill="FireStrike"] {
+  grid-area: FireStrike;
+}
+
+[data-skill="FlameBall"] {
+  grid-area: FlameBall;
+}
+
+[data-skill="LightningStrike"] {
+  grid-area: LightningStrike;
+}
+
+[data-skill="WaterWell"] {
+  grid-area: WaterWell;
+}
+
+[data-skill="StoneSpike"] {
+  grid-area: StoneSpike;
+}
+
+[data-skill="FlameGeyser"] {
+  grid-area: FlameGeyser;
+}
+
+[data-skill="Rooting"] {
+  grid-area: Rooting;
+}
+
+[data-skill="Sandstorm"] {
+  grid-area: Sandstorm;
+}
+
+[data-skill="Firebird"] {
+  grid-area: Firebird;
+}
+
+[data-skill="MeteoShower"] {
+  grid-area: MeteoShower;
+}
+
+[data-skill="StoneSpear"] {
+  grid-area: StoneSpear;
+}
+
+[data-skill="LightningMastery"] {
+  grid-area: LightningMastery;
+}
+
+[data-skill="Void"] {
+  grid-area: Void;
+}
+
+[data-skill="LightningShock"] {
+  grid-area: LightningShock;
+}
+
+[data-skill="Blinkpool"] {
+  grid-area: Blinkpool;
+}
+
+[data-skill="Swordwind"] {
+  grid-area: Swordwind;
+}
+
+[data-skill="FireMastery"] {
+  grid-area: FireMastery;
+}
+
+[data-skill="Windfield"] {
+  grid-area: Windfield;
+}
+
+[data-skill="Burningfield"] {
+  grid-area: Burningfield;
+}
+
+[data-skill="LightningStorm"] {
+  grid-area: LightningStorm;
+}
+
+[data-skill="WindMastery"] {
+  grid-area: WindMastery;
+}
+
+[data-skill="Blizzard"] {
+  grid-area: Blizzard;
+}
+
+[data-skill="Earthquake"] {
+  grid-area: Earthquake;
+}
+
+[data-skill="PoisonCloud"] {
+  grid-area: PoisonCloud;
+}
+
+[data-skill="Iceshark"] {
+  grid-area: Iceshark;
+}
+
+[data-skill="ElectricShock"] {
+  grid-area: ElectricShock;
+}
+
+[data-skill="EarthMastery"] {
+  grid-area: EarthMastery;
+}
+
+[data-skill="WaterMastery"] {
+  grid-area: WaterMastery;
+}
+
+[data-skill="EyeoftheStorm"] {
+  grid-area: EyeoftheStorm;
+}
+
+
+.knight {
+  grid-template-areas:
+    "Protection Protection Protection Slash Slash"
+    "Keenwheel BloodyStrike ShieldBash Empowerweapon Empowerweapon"
+    "Blindside ReflexHit Sneaker SmiteAxe BlazingSword"
+    "SpecialHit Guillotine . AxeMastery SwordMastery"
+    ". Charge PainDealer Guard HeartofFury"
+    ". EarthDivider PowerStomp Rage GrandRage"
+    ". PowerSwing PainReflection CallofFury ."
+    "HeartofSacrifice HeartofSacrifice HeartofSacrifice HeartofSacrifice HeartofSacrifice";
+}
+
+[data-skill="Protection"] {
+  grid-area: Protection;
+}
+
+[data-skill="Slash"] {
+  grid-area: Slash;
+}
+
+[data-skill="Keenwheel"] {
+  grid-area: Keenwheel;
+}
+
+[data-skill="BloodyStrike"] {
+  grid-area: BloodyStrike;
+}
+
+[data-skill="ShieldBash"] {
+  grid-area: ShieldBash;
+}
+
+[data-skill="Empowerweapon"] {
+  grid-area: Empowerweapon;
+}
+
+[data-skill="Blindside"] {
+  grid-area: Blindside;
+}
+
+[data-skill="ReflexHit"] {
+  grid-area: ReflexHit;
+}
+
+[data-skill="Sneaker"] {
+  grid-area: Sneaker;
+}
+
+[data-skill="SmiteAxe"] {
+  grid-area: SmiteAxe;
+}
+
+[data-skill="BlazingSword"] {
+  grid-area: BlazingSword;
+}
+
+[data-skill="SpecialHit"] {
+  grid-area: SpecialHit;
+}
+
+[data-skill="Guillotine"] {
+  grid-area: Guillotine;
+}
+
+[data-skill="AxeMastery"] {
+  grid-area: AxeMastery;
+}
+
+[data-skill="SwordMastery"] {
+  grid-area: SwordMastery;
+}
+
+[data-skill="Charge"] {
+  grid-area: Charge;
+}
+
+[data-skill="PainDealer"] {
+  grid-area: PainDealer;
+}
+
+[data-skill="Guard"] {
+  grid-area: Guard;
+}
+
+[data-skill="HeartofFury"] {
+  grid-area: HeartofFury;
+}
+
+[data-skill="EarthDivider"] {
+  grid-area: EarthDivider;
+}
+
+[data-skill="PowerStomp"] {
+  grid-area: PowerStomp;
+}
+
+[data-skill="Rage"] {
+  grid-area: Rage;
+}
+
+[data-skill="GrandRage"] {
+  grid-area: GrandRage;
+}
+
+[data-skill="PowerSwing"] {
+  grid-area: PowerSwing;
+}
+
+[data-skill="PainReflection"] {
+  grid-area: PainReflection;
+}
+
+[data-skill="CallofFury"] {
+  grid-area: CallofFury;
+}
+
+[data-skill="HeartofSacrifice"] {
+  grid-area: HeartofSacrifice;
+}
+
+
+.psykeeper {
+  grid-template-areas:
+    "MentalStrike MentalStrike MentalStrike Blinkpool Blinkpool"
+    "FlameBall Swordwind IceMissile LightningBall StoneSpike"
+    "FlameGeyser Strongwind Waterball LightningRam Rooting"
+    "FireStrike WindCutter WaterWell LightningShock RockCrash"
+    ". Demonology PsychicBomb CrucioSpell ."
+    ". Satanology SpiritBomb MaximumCrisis ."
+    ". . PsychicWall PsychicSquare ."
+    "GravityWell GravityWell GravityWell GravityWell GravityWell";
+}
+
+[data-skill="RockCrash"] {
+  grid-area: RockCrash;
+}
+
+[data-skill="WindCutter"] {
+  grid-area: WindCutter;
+}
+
+[data-skill="MentalStrike"] {
+  grid-area: MentalStrike;
+}
+
+[data-skill="IceMissile"] {
+  grid-area: IceMissile;
+}
+
+[data-skill="Strongwind"] {
+  grid-area: Strongwind;
+}
+
+[data-skill="Waterball"] {
+  grid-area: Waterball;
+}
+
+[data-skill="LightningBall"] {
+  grid-area: LightningBall;
+}
+
+[data-skill="LightningRam"] {
+  grid-area: LightningRam;
+}
+
+[data-skill="FireStrike"] {
+  grid-area: FireStrike;
+}
+
+[data-skill="FlameBall"] {
+  grid-area: FlameBall;
+}
+
+[data-skill="WaterWell"] {
+  grid-area: WaterWell;
+}
+
+[data-skill="StoneSpike"] {
+  grid-area: StoneSpike;
+}
+
+[data-skill="FlameGeyser"] {
+  grid-area: FlameGeyser;
+}
+
+[data-skill="Rooting"] {
+  grid-area: Rooting;
+}
+
+[data-skill="LightningShock"] {
+  grid-area: LightningShock;
+}
+
+[data-skill="Demonology"] {
+  grid-area: Demonology;
+}
+
+[data-skill="PsychicBomb"] {
+  grid-area: PsychicBomb;
+}
+
+[data-skill="CrucioSpell"] {
+  grid-area: CrucioSpell;
+}
+
+[data-skill="Satanology"] {
+  grid-area: Satanology;
+}
+
+[data-skill="SpiritBomb"] {
+  grid-area: SpiritBomb;
+}
+
+[data-skill="MaximumCrisis"] {
+  grid-area: MaximumCrisis;
+}
+
+[data-skill="PsychicSquare"] {
+  grid-area: PsychicSquare;
+}
+
+[data-skill="Blinkpool"] {
+  grid-area: Blinkpool;
+}
+
+[data-skill="Swordwind"] {
+  grid-area: Swordwind;
+}
+
+[data-skill="PsychicWall"] {
+  grid-area: PsychicWall;
+}
+
+[data-skill="GravityWell"] {
+  grid-area: GravityWell;
+}
+
+
+.ringmaster {
+  grid-template-areas:
+    "Heal Heal Heal MoonBeam MoonBeam"
+    "Patience QuickStep MentalSign TempingHole ."
+    "Resurrection Haste HeapUp Stonehand ."
+    "CircleHealing CatsReflex BeefUp BurstCrack ."
+    "Prevention CannonBall Accuracy PowerFist ."
+    "Protect Holycross MerkabaHanzelrusha . ."
+    "Holyguard SpiritFortune HealRain . ."
+    "GeburahTiphreth GvurTialla BarrierofLife . .";
+}
+
+[data-skill="BeefUp"] {
+  grid-area: BeefUp;
+}
+
+[data-skill="CircleHealing"] {
+  grid-area: CircleHealing;
+}
+
+[data-skill="CannonBall"] {
+  grid-area: CannonBall;
+}
+
+[data-skill="MentalSign"] {
+  grid-area: MentalSign;
+}
+
+[data-skill="TempingHole"] {
+  grid-area: TempingHole;
+}
+
+[data-skill="Patience"] {
+  grid-area: Patience;
+}
+
+[data-skill="Stonehand"] {
+  grid-area: Stonehand;
+}
+
+[data-skill="CatsReflex"] {
+  grid-area: CatsReflex;
+}
+
+[data-skill="QuickStep"] {
+  grid-area: QuickStep;
+}
+
+[data-skill="Heal"] {
+  grid-area: Heal;
+}
+
+[data-skill="PowerFist"] {
+  grid-area: PowerFist;
+}
+
+[data-skill="Accuracy"] {
+  grid-area: Accuracy;
+}
+
+[data-skill="HeapUp"] {
+  grid-area: HeapUp;
+}
+
+[data-skill="BurstCrack"] {
+  grid-area: BurstCrack;
+}
+
+[data-skill="MoonBeam"] {
+  grid-area: MoonBeam;
+}
+
+[data-skill="Resurrection"] {
+  grid-area: Resurrection;
+}
+
+[data-skill="Haste"] {
+  grid-area: Haste;
+}
+
+[data-skill="Holyguard"] {
+  grid-area: Holyguard;
+}
+
+[data-skill="Protect"] {
+  grid-area: Protect;
+}
+
+[data-skill="GvurTialla"] {
+  grid-area: GvurTialla;
+}
+
+[data-skill="GeburahTiphreth"] {
+  grid-area: GeburahTiphreth;
+}
+
+[data-skill="BarrierofLife"] {
+  grid-area: BarrierofLife;
+}
+
+[data-skill="HealRain"] {
+  grid-area: HealRain;
+}
+
+[data-skill="Holycross"] {
+  grid-area: Holycross;
+}
+
+[data-skill="MerkabaHanzelrusha"] {
+  grid-area: MerkabaHanzelrusha;
+}
+
+[data-skill="SpiritFortune"] {
+  grid-area: SpiritFortune;
+}
+
+[data-skill="Prevention"] {
+  grid-area: Prevention;
+}
+
+
+.ranger {
+  grid-template-areas:
+    "Pulling Pulling SlowStep SlowStep JunkArrow"
+    "FastWalker FastWalker Yo-YoMastery Yo-YoMastery BowMastery"
+    "DarkIllusion Snatch CrossLine SilentShot AimedShot"
+    "PerfectBlock DeadlySwing CounterAttack AutoShot ArrowRain"
+    ". IceArrow FlameArrow PoisonArrow ."
+    ". CriticalShot PiercingArrow Nature ."
+    ". Tripleshot Tripleshot SilentArrow ."
+    "Boomburst Boomburst Boomburst Boomburst Boomburst";
+}
+
+[data-skill="Pulling"] {
+  grid-area: Pulling;
+}
+
+[data-skill="SlowStep"] {
+  grid-area: SlowStep;
+}
+
+[data-skill="JunkArrow"] {
+  grid-area: JunkArrow;
+}
+
+[data-skill="FastWalker"] {
+  grid-area: FastWalker;
+}
+
+[data-skill="Yo-YoMastery"] {
+  grid-area: Yo-YoMastery;
+}
+
+[data-skill="BowMastery"] {
+  grid-area: BowMastery;
+}
+
+[data-skill="DarkIllusion"] {
+  grid-area: DarkIllusion;
+}
+
+[data-skill="Snatch"] {
+  grid-area: Snatch;
+}
+
+[data-skill="CrossLine"] {
+  grid-area: CrossLine;
+}
+
+[data-skill="SilentShot"] {
+  grid-area: SilentShot;
+}
+
+[data-skill="AimedShot"] {
+  grid-area: AimedShot;
+}
+
+[data-skill="PerfectBlock"] {
+  grid-area: PerfectBlock;
+}
+
+[data-skill="DeadlySwing"] {
+  grid-area: DeadlySwing;
+}
+
+[data-skill="CounterAttack"] {
+  grid-area: CounterAttack;
+}
+
+[data-skill="AutoShot"] {
+  grid-area: AutoShot;
+}
+
+[data-skill="ArrowRain"] {
+  grid-area: ArrowRain;
+}
+
+[data-skill="IceArrow"] {
+  grid-area: IceArrow;
+}
+
+[data-skill="FlameArrow"] {
+  grid-area: FlameArrow;
+}
+
+[data-skill="PoisonArrow"] {
+  grid-area: PoisonArrow;
+}
+
+[data-skill="CriticalShot"] {
+  grid-area: CriticalShot;
+}
+
+[data-skill="PiercingArrow"] {
+  grid-area: PiercingArrow;
+}
+
+[data-skill="Nature"] {
+  grid-area: Nature;
+}
+
+[data-skill="Tripleshot"] {
+  grid-area: Tripleshot;
+}
+
+[data-skill="SilentArrow"] {
+  grid-area: SilentArrow;
+}
+
+[data-skill="Boomburst"] {
+  grid-area: Boomburst;
+}
+
+
+.jester {
+  grid-template-areas:
+    "Pulling Pulling SlowStep SlowStep JunkArrow"
+    "FastWalker FastWalker Yo-YoMastery Yo-YoMastery BowMastery"
+    "DarkIllusion Snatch CrossLine SilentShot AimedShot"
+    "PerfectBlock DeadlySwing CounterAttack AutoShot ArrowRain"
+    ". EnchantPoison EnchantBlood Escape ."
+    ". CriticalSwing MultiStab EnchantAbsorb ."
+    ". VitalStab VitalStab HitofPenya ."
+    "JestersBlast JestersBlast JestersBlast JestersBlast JestersBlast";
+}
+
+[data-skill="Pulling"] {
+  grid-area: Pulling;
+}
+
+[data-skill="SlowStep"] {
+  grid-area: SlowStep;
+}
+
+[data-skill="JunkArrow"] {
+  grid-area: JunkArrow;
+}
+
+[data-skill="FastWalker"] {
+  grid-area: FastWalker;
+}
+
+[data-skill="Yo-YoMastery"] {
+  grid-area: Yo-YoMastery;
+}
+
+[data-skill="BowMastery"] {
+  grid-area: BowMastery;
+}
+
+[data-skill="DarkIllusion"] {
+  grid-area: DarkIllusion;
+}
+
+[data-skill="Snatch"] {
+  grid-area: Snatch;
+}
+
+[data-skill="CrossLine"] {
+  grid-area: CrossLine;
+}
+
+[data-skill="SilentShot"] {
+  grid-area: SilentShot;
+}
+
+[data-skill="AimedShot"] {
+  grid-area: AimedShot;
+}
+
+[data-skill="PerfectBlock"] {
+  grid-area: PerfectBlock;
+}
+
+[data-skill="DeadlySwing"] {
+  grid-area: DeadlySwing;
+}
+
+[data-skill="CounterAttack"] {
+  grid-area: CounterAttack;
+}
+
+[data-skill="AutoShot"] {
+  grid-area: AutoShot;
+}
+
+[data-skill="ArrowRain"] {
+  grid-area: ArrowRain;
+}
+
+[data-skill="EnchantPoison"] {
+  grid-area: EnchantPoison;
+}
+
+[data-skill="EnchantBlood"] {
+  grid-area: EnchantBlood;
+}
+
+[data-skill="Escape"] {
+  grid-area: Escape;
+}
+
+[data-skill="CriticalSwing"] {
+  grid-area: CriticalSwing;
+}
+
+[data-skill="MultiStab"] {
+  grid-area: MultiStab;
+}
+
+[data-skill="EnchantAbsorb"] {
+  grid-area: EnchantAbsorb;
+}
+
+[data-skill="VitalStab"] {
+  grid-area: VitalStab;
+}
+
+[data-skill="HitofPenya"] {
+  grid-area: HitofPenya;
+}
+
+[data-skill="JestersBlast"] {
+  grid-area: JestersBlast;
+}

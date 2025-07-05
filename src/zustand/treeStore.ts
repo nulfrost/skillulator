@@ -1,195 +1,169 @@
 import { create } from "zustand";
 import { tree as jobTree } from "../../data/tree";
 import {
-  getJobById,
-  getSkillById,
-  getJobTotalSkillPoints,
-  classSkillPoints,
+	getJobById,
+	getSkillById,
+	getJobTotalSkillPoints,
+	classSkillPoints,
 } from "../utils";
+import { updateSkillRequirements } from "../utils/skillRequirements";
 import { produce } from "immer";
 
 export type State = {
-  jobTree: typeof jobTree;
-  skillPoints: number;
-  classSkillPoints: typeof classSkillPoints;
+	jobTree: typeof jobTree;
+	skillPoints: number;
+	classSkillPoints: typeof classSkillPoints;
 };
 
 type Actions = {
-  increaseSkillPoint: (jobId: number, skillId: number) => void;
-  increaseSkillToMax: (jobId: number, skillId: number) => void;
-  decreaseSkillPoint: (jobId: number, skillId: number) => void;
-  setSkillPoints: (jobId: number, characterLevel: number) => void;
+	increaseSkillPoint: (jobId: number, skillId: number) => void;
+	increaseSkillToMax: (jobId: number, skillId: number) => void;
+	decreaseSkillPoint: (jobId: number, skillId: number) => void;
+	setSkillPoints: (jobId: number, characterLevel: number) => void;
 
-  createPreloadedSkillTree: (
-    jobId: number,
-    skills: Array<Record<string, unknown>>,
-  ) => void;
-  resetSkillTree: (jobId: number) => void;
+	createPreloadedSkillTree: (
+		jobId: number,
+		skills: Array<Record<string, unknown>>,
+	) => void;
+	resetSkillTree: (jobId: number) => void;
 };
 
 const initialState: State = {
-  jobTree,
-  classSkillPoints,
-  skillPoints: 0,
+	jobTree,
+	classSkillPoints,
+	skillPoints: 0,
 };
 
 export const useTreeStore = create<State & Actions>()((set, get) => ({
-  jobTree,
-  classSkillPoints,
-  skillPoints: 0,
-  setSkillPoints: (jobId: number, characterLevel: number) =>
-    set(
-      produce((state: State) => {
-        // need to figure out how many skill points are already spent and subtract it
-        let skillPoints = getJobTotalSkillPoints(
-          state.classSkillPoints,
-          jobId,
-          characterLevel,
-        );
+	jobTree,
+	classSkillPoints,
+	skillPoints: 0,
+	setSkillPoints: (jobId: number, characterLevel: number) =>
+		set(
+			produce((state: State) => {
+				// need to figure out how many skill points are already spent and subtract it
+				const totalSkillPoints = getJobTotalSkillPoints(
+					state.classSkillPoints,
+					jobId,
+					characterLevel,
+				);
 
-        let skillPointsToSubtract = 0;
-        const job = getJobById(jobId, state.jobTree);
-        job?.skills.forEach((s) => {
-          skillPointsToSubtract += s.skillLevel * s.skillPoints;
-        });
-        let remainingSkillPoints = skillPoints - skillPointsToSubtract;
+				const job = getJobById(jobId, state.jobTree);
+				if (!job) return state;
 
-        state.skillPoints = remainingSkillPoints;
-        return state;
-      }),
-    ),
-  increaseSkillPoint: (jobId: number, skillId: number) =>
-    set(
-      produce((state: State) => {
-        // find the job
-        const job = getJobById(jobId, state.jobTree);
-        // find skill
-        const skill = getSkillById(skillId, job?.skills!);
-        if (skill!.skillLevel === skill!.levels.length) return state;
-        if (skill!.skillPoints > state.skillPoints) return state;
-        skill!.skillLevel += 1;
-        state.skillPoints -= skill!.skillPoints;
+				const spentSkillPoints = job.skills.reduce(
+					(total, skill) => total + skill.skillLevel * skill.skillPoints,
+					0,
+				);
 
-        // find all required skills
-        // if it's the min level, switch hasMinLevel to true
-        job?.skills.forEach((s) => {
-          const foundSkill = s.requirements.find((sz) => sz.skill === skillId);
-          const skillIndex = s.requirements.findIndex(
-            (sx) => sx.skill === skillId,
-          );
-          if (
-            typeof foundSkill !== "undefined" &&
-            foundSkill.level === skill!.skillLevel
-          ) {
-            s.requirements[skillIndex].hasMinLevel = true;
-          }
-        });
-        return state;
-      }),
-    ),
-  decreaseSkillPoint: (jobId: number, skillId: number) =>
-    set(
-      produce((state: State) => {
-        // find the job
-        const job = getJobById(jobId, state.jobTree);
-        // find skill
-        const skill = getSkillById(skillId, job?.skills!);
-        if (skill?.skillLevel === 0) return state;
-        skill!.skillLevel -= 1;
-        state.skillPoints += skill!.skillPoints;
-        // find all required skills
-        // if the skillLevel is less than the required skills required level switch to false
-        job?.skills.forEach((s) => {
-          const foundSkill = s.requirements.find((sz) => sz.skill === skillId);
-          const skillIndex = s.requirements.findIndex(
-            (sx) => sx.skill === skillId,
-          );
-          if (
-            typeof foundSkill !== "undefined" &&
-            skill!.skillLevel < foundSkill.level
-          ) {
-            s.requirements[skillIndex].hasMinLevel = false;
-          }
-        });
-      }),
-    ),
-  createPreloadedSkillTree: (
-    jobId: number,
-    predefinedSkills: Array<Record<string, unknown>>,
-  ) =>
-    set(
-      produce((state: State) => {
-        // we map over the pre-defined skills
-        // we check the skill id and level and update the skillLevel accordingly
-        // we also need to do the check to see if the skill is the min level
-        const job = getJobById(jobId, state.jobTree);
-        job?.skills.forEach((originalTreeSkill) => {
-          predefinedSkills.forEach((predefinedTreeSkill) => {
-            if (originalTreeSkill.id === predefinedTreeSkill.skill) {
-              originalTreeSkill.skillLevel = predefinedTreeSkill.level;
-            }
-          });
+				state.skillPoints = totalSkillPoints - spentSkillPoints;
+				return state;
+			}),
+		),
+	increaseSkillPoint: (jobId: number, skillId: number) =>
+		set(
+			produce((state: State) => {
+				const job = getJobById(jobId, state.jobTree);
+				if (!job) return state;
 
-          const skill = getSkillById(originalTreeSkill.id, job?.skills!);
+				const skill = getSkillById(skillId, job.skills);
+				if (!skill) return state;
 
-          job?.skills.forEach((s) => {
-            const foundSkill = s.requirements.find(
-              (sz) => sz.skill === originalTreeSkill.id,
-            );
-            const skillIndex = s.requirements.findIndex(
-              (sx) => sx.skill === originalTreeSkill.id,
-            );
-            if (
-              typeof foundSkill !== "undefined" &&
-              foundSkill.level <= skill!.skillLevel
-            ) {
-              s.requirements[skillIndex].hasMinLevel = true;
-            }
-          });
-        });
-      }),
-    ),
-  increaseSkillToMax: (skillId: number, jobId: number) =>
-    set(
-      produce((state: State) => {
-        const job = getJobById(jobId, state.jobTree);
-        const skill = getSkillById(skillId, job?.skills!);
-        if (skill!.levels.length === skill!.skillLevel) return state;
-        if (skill!.levels.length * skill!.skillLevel < state.skillPoints) {
-          skill!.skillLevel =
-            state.skillPoints / skill!.skillPoints > skill!.levels.length
-              ? skill!.levels.length
-              : Math.floor(+(state.skillPoints / skill!.skillPoints));
-          state.skillPoints -= skill!.skillLevel * skill!.skillPoints;
-        }
+				if (skill.skillLevel === skill.levels.length) return state;
+				if (skill.skillPoints > state.skillPoints) return state;
 
-        // refactor this block of code
-        job?.skills.forEach((s) => {
-          const foundSkill = s.requirements.find((sz) => sz.skill === skillId);
-          const skillIndex = s.requirements.findIndex(
-            (sx) => sx.skill === skillId,
-          );
-          if (
-            typeof foundSkill !== "undefined" &&
-            (foundSkill.level < skill!.skillLevel ||
-              foundSkill.level === skill!.skillLevel)
-          ) {
-            s.requirements[skillIndex].hasMinLevel = true;
-          }
-        });
-      }),
-    ),
-  resetSkillTree: (jobId: number) =>
-    set((state: State) => {
-      let skillPoints = getJobTotalSkillPoints(
-        state.classSkillPoints,
-        jobId,
-        15,
-      );
+				skill.skillLevel += 1;
+				state.skillPoints -= skill.skillPoints;
 
-      return {
-        ...initialState,
-        skillPoints,
-      };
-    }),
+				// Update skill requirements using the utility function
+				updateSkillRequirements(job, skillId, skill.skillLevel);
+				return state;
+			}),
+		),
+	decreaseSkillPoint: (jobId: number, skillId: number) =>
+		set(
+			produce((state: State) => {
+				const job = getJobById(jobId, state.jobTree);
+				if (!job) return state;
+
+				const skill = getSkillById(skillId, job.skills);
+				if (!skill || skill.skillLevel === 0) return state;
+
+				skill.skillLevel -= 1;
+				state.skillPoints += skill.skillPoints;
+
+				// Update skill requirements using the utility function
+				updateSkillRequirements(job, skillId, skill.skillLevel);
+				return state;
+			}),
+		),
+	createPreloadedSkillTree: (
+		jobId: number,
+		predefinedSkills: Array<Record<string, unknown>>,
+	) =>
+		set(
+			produce((state: State) => {
+				const job = getJobById(jobId, state.jobTree);
+				if (!job) return state;
+
+				for (const originalTreeSkill of job.skills) {
+					for (const predefinedTreeSkill of predefinedSkills) {
+						if (originalTreeSkill.id === predefinedTreeSkill.skill) {
+							originalTreeSkill.skillLevel =
+								predefinedTreeSkill.level as number;
+						}
+					}
+
+					const skill = getSkillById(originalTreeSkill.id, job.skills);
+					if (skill) {
+						updateSkillRequirements(
+							job,
+							originalTreeSkill.id,
+							skill.skillLevel,
+						);
+					}
+				}
+				return state;
+			}),
+		),
+	increaseSkillToMax: (skillId: number, jobId: number) =>
+		set(
+			produce((state: State) => {
+				const job = getJobById(jobId, state.jobTree);
+				if (!job) return state;
+
+				const skill = getSkillById(skillId, job.skills);
+				if (!skill) return state;
+
+				if (skill.levels.length === skill.skillLevel) return state;
+
+				const maxPossibleLevel = Math.min(
+					skill.levels.length,
+					Math.floor(state.skillPoints / skill.skillPoints),
+				);
+
+				if (maxPossibleLevel > skill.skillLevel) {
+					const levelsToAdd = maxPossibleLevel - skill.skillLevel;
+					skill.skillLevel = maxPossibleLevel;
+					state.skillPoints -= levelsToAdd * skill.skillPoints;
+				}
+
+				// Update skill requirements using the utility function
+				updateSkillRequirements(job, skillId, skill.skillLevel);
+				return state;
+			}),
+		),
+	resetSkillTree: (jobId: number) =>
+		set((state: State) => {
+			const skillPoints = getJobTotalSkillPoints(
+				state.classSkillPoints,
+				jobId,
+				15,
+			);
+
+			return {
+				...initialState,
+				skillPoints,
+			};
+		}),
 }));

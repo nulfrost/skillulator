@@ -1,17 +1,17 @@
 {
-  "pageDescription": "Skillulator, optimize and share your FlyFF skill builds",
-  "secondaryTitle": "How to use",
-  "appInstructions": {
-    "inst1": "Use the left and right click to level up or level down a skill",
-    "inst2": "The arrow up and arrow down keys can be used as well",
-    "inst3": "You can set a level using the character level input",
-    "inst4": "Clicking \"copy skill tree\" will create a link for you to share with other people"
-  },
-  "classSelectionLink": "Back to class selection",
-  "copyText": "Copy skill tree",
-  "copiedText": "Copied code to clipboard!",
-  "resetText": "Reset skill tree",
-  "availSkillPoints": "Available skill points",
-  "charLevel": "Character Level",
-  "requiredText": "is required"
+	"pageDescription": "Skillulator, optimize and share your FlyFF skill builds",
+	"secondaryTitle": "How to use",
+	"appInstructions": {
+		"inst1": "Use the left and right click to level up or level down a skill",
+		"inst2": "The arrow up and arrow down keys can be used as well",
+		"inst3": "You can set a level using the character level input",
+		"inst4": "Clicking \"copy skill tree\" will create a link for you to share with other people"
+	},
+	"classSelectionLink": "Back to class selection",
+	"copyText": "Share skill tree",
+	"copiedText": "Copied code to clipboard!",
+	"resetText": "Reset skill tree",
+	"availSkillPoints": "Available skill points",
+	"charLevel": "Character Level",
+	"requiredText": "is required"
 }
