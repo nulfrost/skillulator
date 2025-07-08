@@ -88,6 +88,18 @@ export function getSkillPointsForLevel(characterLevel: number) {
         20 * 3 +
         20 * 2
       );
+    case characterLevel > 160 && characterLevel <= 165:
+      return (
+        (characterLevel - 160) * 2 +
+        20 * 1 +
+        20 * 8 +
+        20 * 7 +
+        20 * 6 +
+        20 * 5 +
+        20 * 4 +
+        20 * 3 +
+        20 * 2
+      );
     default:
       return 0;
   }
