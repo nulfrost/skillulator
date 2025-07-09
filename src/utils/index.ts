@@ -98,6 +98,7 @@ export function getSkillPointsForLevel(characterLevel: number) {
         20 * 5 +
         20 * 4 +
         20 * 3 +
+        20 * 2 +
         20 * 2
       );
     default:

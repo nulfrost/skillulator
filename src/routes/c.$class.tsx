@@ -118,7 +118,7 @@ function SkillTree() {
                     value={level}
                     onChange={handleLevelChange}
                     min={15}
-                    max={160}
+                    max={165}
                   />
                 </div>
               </div>
